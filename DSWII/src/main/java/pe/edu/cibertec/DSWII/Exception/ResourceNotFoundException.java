@@ -1,7 +1,7 @@
 package pe.edu.cibertec.DSWII.Exception;
 
-public class ResourceNotFoundExceoption extends RuntimeException{
-    public ResourceNotFoundExceoption(String mensaje){
+public class ResourceNotFoundException extends RuntimeException{
+    public ResourceNotFoundException(String mensaje){
         super(mensaje);
     }
 }
