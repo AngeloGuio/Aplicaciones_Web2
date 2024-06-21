@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pe.edu.cibertec.DSWII.Exception.ResourceNotFoundException;
 import pe.edu.cibertec.DSWII.Model.Base.Proveedor;
 import pe.edu.cibertec.DSWII.Service.ProveedorService;
@@ -38,4 +35,10 @@ public class ProveedorController {
         );
         return new ResponseEntity<>(proveedor,HttpStatus.OK);
     }
+    @PostMapping("")
+    public ResponseEntity<Proveedor> agregarProveedor(@RequestBody Proveedor proveedor){
+        return new ResponseEntity<>(proveedorService.agregarProveedor(proveedor),HttpStatus.CREATED);
+
+    }
+    
 }

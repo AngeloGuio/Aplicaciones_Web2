@@ -20,6 +20,6 @@ public class Proveedor {
     private  String ruc;
 
     private String correo;
-  
+
     private String representante;
 }
