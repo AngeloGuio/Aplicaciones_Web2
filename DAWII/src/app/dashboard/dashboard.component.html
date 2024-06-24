@@ -1,0 +1,37 @@
+
+  <mat-toolbar color="" class="">
+    <img src="../../assets/logo-callaopets.png" alt="Logo" class="logo">
+    &nbsp;&nbsp;
+    <button mat-button (click)="irPortada()">Portada</button>
+    &nbsp;&nbsp;
+    <button mat-button (click)="irNosotros()">Quienes Somos</button>
+    &nbsp;&nbsp;
+    <button mat-button (click)="irContacto()">Contáctenos</button>
+  
+    <div *ngIf="estaLogeado()">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item >Perfil</button>
+        <button mat-menu-item >Configuraciones</button>
+        <button mat-menu-item (click)="irModUsuario()"> Usuario </button>
+      </mat-menu>
+    </div>
+  
+    <span class="example-spacer"></span>
+    
+    <button *ngIf="!estaLogeado()" mat-button (click)="navigateToLogin()">
+      <mat-icon>login</mat-icon>
+      Ingresar
+    </button>
+  
+    <button *ngIf="estaLogeado()" mat-icon-button (click)="salir()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  
+  </mat-toolbar>
+
+  <div class="content-wrapper">
+    <router-outlet></router-outlet>
+  </div>
