@@ -1,0 +1,18 @@
+<section class="products-section">
+    <div class="products-container">
+      <mat-card class="product-card" *ngFor="let prod of productos">
+        <!-- Product image-->
+        <img mat-card-image src="assets/productos/{{ prod.idproducto }}.jpg" alt="{{ prod.nombre }}" />
+        <!-- Product details-->
+        <mat-card-content class="product-details">
+          <h3 class="product-name">{{ prod.nombre }}</h3>
+          <div class="product-price">S/. {{ prod.preciopublico }}</div>
+        </mat-card-content>
+        <!-- Product actions-->
+        <mat-card-actions class="product-actions">
+          <button mat-button class="buy-button">Comprar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+</section>
+  

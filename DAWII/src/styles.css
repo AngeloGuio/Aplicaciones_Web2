@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Ancho de la barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 6px;
+}
+  
+/* Fondo de la barra de desplazamiento */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+  
+/* Estilo del "thumb" o control deslizante de la barra de desplazamiento */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+}
+  
+/* Estilo del "thumb" al pasar el cursor sobre él */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+  

@@ -1,0 +1,44 @@
+.products-section {
+    padding: 2rem 0;
+    margin: auto 16rem;
+}
+  
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+  
+.product-card {
+    width: 250px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.175);
+}
+  
+.product-details {
+    text-align: center;
+}
+  
+.product-name {
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+  
+.buy-button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    border: 1px solid black;
+    color: black;
+    background-color: white;
+    margin-top: 10px;
+    padding: 10px 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+  
+.buy-button:hover {
+    color: white;
+    background-color: black;
+}
