@@ -16,6 +16,10 @@ public class Trabajador {
     private String  telefono;
     private String correo;
     private String direccion;
+    @ManyToOne
+    @JoinColumn(name = "idcargo")
     private Integer idcargo;
+    @ManyToOne
+    @JoinColumn(name = "idtipoarea")
     private Integer idtipoarea;
 }

@@ -1,4 +1,4 @@
-package pe.edu.cibertec.DSWII.model.bd.sp;
+package pe.edu.cibertec.DSWII.model.bd.pk;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
