@@ -18,8 +18,8 @@ public class Trabajador {
     private String direccion;
     @ManyToOne
     @JoinColumn(name = "idcargo")
-    private Integer idcargo;
+    private Cargo idcargo;
     @ManyToOne
     @JoinColumn(name = "idtipoarea")
-    private Integer idtipoarea;
+    private Area idtipoarea;
 }

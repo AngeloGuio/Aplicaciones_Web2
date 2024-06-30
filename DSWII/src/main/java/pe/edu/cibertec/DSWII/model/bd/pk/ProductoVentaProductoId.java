@@ -12,4 +12,5 @@ public class ProductoVentaProductoId {
     private Integer idproducto;
     private Integer codventapro;
 
+
 }

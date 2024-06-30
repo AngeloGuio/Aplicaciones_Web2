@@ -22,8 +22,8 @@ public class DetalleTipoPago {
     private String fechavencimiento;
 
     @ManyToOne
-    @MapsId("productid")
-    @JoinColumn(name = "productid")
+    @MapsId("idproducto")
+    @JoinColumn(name = "idproducto")
     @JsonBackReference
     private Producto product;
 

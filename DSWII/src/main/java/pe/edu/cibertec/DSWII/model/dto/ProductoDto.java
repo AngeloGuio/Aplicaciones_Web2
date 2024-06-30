@@ -3,7 +3,7 @@ package pe.edu.cibertec.DSWII.model.dto;
 import lombok.Data;
 
 @Data
-public class ProdcutoDto {
+public class ProductoDto implements DtoEntity{
     private Integer idproducto;
     private Integer idtipopro;
     private Integer idproveedor;

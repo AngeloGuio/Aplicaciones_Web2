@@ -9,9 +9,10 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
+
 @Getter
 @Setter
+@Entity
 @Table(name = "producto")
 public class Producto {
     @Id
@@ -19,10 +20,10 @@ public class Producto {
     private Integer idproducto;
     @ManyToOne
     @JoinColumn(name = "idtipopro")
-    private Integer idtipopro;
+    private TipoProducto idtipopro;
     @ManyToOne
     @JoinColumn(name = "idproveedor")
-    private Integer idproveedor;
+    private Proveedor idproveedor;
     private String nombre;
     private Integer cantidad;
     private Double preciopublico;
@@ -30,10 +31,10 @@ public class Producto {
     private Integer stockmaximo;
     @ManyToOne
     @JoinColumn(name = "codestado")
-    private Integer codestado;
+    private Estado codestado;
     @ManyToOne
     @JoinColumn(name = "idanimal")
-    private Integer idanimal;
+    private Animal idanimal;
     private Double precioproveedor;
 
     @OneToMany(mappedBy = "product",

@@ -22,15 +22,8 @@ public class VentaProducto {
     private Integer codventapro;
 
     @ManyToOne
-    @JoinColumn(name = "idproducto")
-    private Producto producto;
-
-    @ManyToOne
-    @JoinColumn(name = "idtrabajador")
-    private Trabajador idtrabajador;
-
-    @Column(name="cantidad")
-    private Integer cantidad;
+    @JoinColumn(name = "idusuario")
+    private Usuario idusuario;
 
     @Column(name="fecha", nullable = false, updatable = false)
     @CreationTimestamp
@@ -39,12 +32,20 @@ public class VentaProducto {
     @Column(name="direccion")
     private String direccion;
 
+    @Column(name="montototal")
+    private double montototal;
+
     @ManyToOne
     @JoinColumn(name = "idtipopago")
     private TipoPago tipopago;
 
-    @Column(name="montototal")
-    private double montototal;
+    @ManyToOne
+    @JoinColumn(name = "idtrabajador")
+    private Trabajador idtrabajador;
+
+    @Column(name="cantidad")
+    private Integer cantidad;
+
     @OneToMany(mappedBy = "ventaproducto",
             cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
