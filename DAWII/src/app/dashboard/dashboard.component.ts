@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { MaterialModule } from '../material/material.module';
 import { CommonModule } from '@angular/common';
@@ -18,6 +18,7 @@ import { CarritoService } from './carrito/carrito.service';
 
 export class DashboardComponent {
   cantidadProductosEnCarrito: number = 0;
+  mostrarIconoCarrito: boolean = true;
 
   constructor(
     private router: Router, 
@@ -28,6 +29,11 @@ export class DashboardComponent {
   ){
     this.carritoService.obtenerCantidadProductos().subscribe(cantidad => {
       this.cantidadProductosEnCarrito = cantidad;
+    });
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.mostrarIconoCarrito = !event.urlAfterRedirects.includes('/detalle-carrito');
+      }
     });
   }
 
@@ -41,6 +47,9 @@ export class DashboardComponent {
 
   salir(): void{
     this.authService.logout();
+    if (this.route.snapshot.firstChild && this.route.snapshot.firstChild.data['protegida']) {
+      this.router.navigate(['/']); // Redirige al usuario a la página de inicio
+    }
   }
 
   irPortada():void{

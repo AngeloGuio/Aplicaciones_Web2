@@ -21,7 +21,7 @@
 
     <span class="example-spacer"></span>
     
-    <button mat-icon-button [matBadge]="cantidadProductosEnCarrito" matBadgeColor="accent" matBadgePosition="below after" (click)="abrirCarrito()">
+    <button *ngIf="mostrarIconoCarrito" mat-icon-button [matBadge]="cantidadProductosEnCarrito" matBadgeColor="accent" matBadgePosition="below after" (click)="abrirCarrito()">
       <mat-icon>shopping_cart</mat-icon>
     </button>
 

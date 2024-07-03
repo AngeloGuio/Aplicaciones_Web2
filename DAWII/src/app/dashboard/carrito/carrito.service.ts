@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Producto } from '../productos/producto';
+import { Producto } from '../home/producto';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -12,7 +12,6 @@ export class CarritoService {
   constructor() {
     this.cargarCarrito();
   }
-
 
   obtenerCantidadProductos(): BehaviorSubject<number> {
     return this.carritoCantidad;
@@ -67,5 +66,22 @@ export class CarritoService {
     const cantidad = this.carrito.length;
     this.carritoCantidad.next(cantidad);
   }
+
+  actualizarProducto(productoActualizado: Producto): void {
+    // Encuentra el índice del producto en el carrito
+    const index = this.carrito.findIndex(p => p.idproducto === productoActualizado.idproducto);
+    
+    if (index !== -1) {
+      // Actualiza la cantidad del producto
+      this.carrito[index].cantidad = productoActualizado.cantidad;
+      
+      // Guarda los cambios en el carrito
+      this.guardarCarrito();
+      
+      // Actualiza la cantidad de productos en el BehaviorSubject
+      this.actualizarCantidadProductos();
+    }
+  }
+  
   
 }

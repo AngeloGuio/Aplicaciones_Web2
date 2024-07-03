@@ -2,16 +2,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MaterialModule } from '../../material/material.module';
 import { CommonModule } from '@angular/common';
-import { ProductoService } from './producto.service';
+import { ProductoService } from './home.service';
 import { Producto } from './producto';
 import { CarritoService } from '../carrito/carrito.service';
 
 @Component({
-  selector: 'app-productos',
+  selector: 'app-home',
   standalone: true,
   imports: [MaterialModule, CommonModule],
-  templateUrl: './productos.component.html',
-  styleUrls: ['./productos.component.css']
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class ProductosComponent implements OnInit {
   productos: Producto[] = [];

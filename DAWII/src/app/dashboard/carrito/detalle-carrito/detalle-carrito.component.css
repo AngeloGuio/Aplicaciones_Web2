@@ -1,0 +1,32 @@
+/* pago.component.css */
+.product-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .pago-container {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .total-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+ 
+  :host {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+  /* Asegúrate de que los estilos se apliquen solo dentro del componente de pago */
+  
+  .table-container{
+    overflow: auto;
+  }

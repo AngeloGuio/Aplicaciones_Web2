@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { CarritoService } from './carrito.service';
-import { Producto } from '../productos/producto';
+import { Producto } from '../home/producto';
 import { MaterialModule } from '../../material/material.module';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-carrito',
@@ -13,21 +15,28 @@ import { CommonModule } from '@angular/common';
 })
 export class CarritoComponent {
   columnasMostradas: string[] = ['imagen', 'nombre', 'precio', 'cantidad', 'acciones'];
-  productos: Producto[]; // Define la interfaz o clase Producto según tus necesidades
+  productos: Producto[];
 
-  constructor(private carritoService: CarritoService) {
-    this.productos = this.carritoService.obtenerProductos(); // Implementa este método en tu servicio
+  constructor(
+    private carritoService: CarritoService,
+    private router: Router,
+    private dialog: MatDialog,
+  ) {
+    this.productos = this.carritoService.obtenerProductos();
   }
 
   eliminarProducto(producto: Producto): void {
-    this.carritoService.eliminarProducto(producto); // Implementa este método en tu servicio
-    // Actualiza la lista de productos después de eliminar
+    this.carritoService.eliminarProducto(producto);
     this.productos = this.carritoService.obtenerProductos();
   }
 
   vaciarCarrito(): void {
-    this.carritoService.vaciarCarrito(); // Implementa este método en tu servicio
-    // Actualiza la lista de productos después de vaciar el carrito
+    this.carritoService.vaciarCarrito();
     this.productos = [];
+  }
+
+  irDetalleCarrito(): void {
+    this.router.navigate(['/detalle-carrito']);
+    this.dialog.closeAll();
   }
 }
