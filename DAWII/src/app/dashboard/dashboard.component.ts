@@ -3,22 +3,32 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { MaterialModule } from '../material/material.module';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { MatBadgeModule } from '@angular/material/badge';
+import { CarritoComponent } from './carrito/carrito.component';
+import { CarritoService } from './carrito/carrito.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterOutlet, MaterialModule, CommonModule],
+  imports: [RouterOutlet, MaterialModule, CommonModule, MatBadgeModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 
 export class DashboardComponent {
+  cantidadProductosEnCarrito: number = 0;
 
-  constructor(private router: Router, 
+  constructor(
+    private router: Router, 
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    public dialog: MatDialog,
+    private carritoService: CarritoService
   ){
-
+    this.carritoService.obtenerCantidadProductos().subscribe(cantidad => {
+      this.cantidadProductosEnCarrito = cantidad;
+    });
   }
 
   public estaLogeado(): boolean {
@@ -44,5 +54,16 @@ export class DashboardComponent {
   }
   irModUsuario():void{
     this.router.navigate(["usuario"], {relativeTo: this.route})
+  }
+
+  abrirCarrito(): void {
+    const dialogRef = this.dialog.open(CarritoComponent, {
+      maxHeight: '480px',
+      minWidth: '40%'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El diálogo del carrito se cerró');
+    });
   }
 }

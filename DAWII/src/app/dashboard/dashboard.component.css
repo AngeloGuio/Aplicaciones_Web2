@@ -1,3 +1,6 @@
+.navigation_content{
+  height: 20%;
+}
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -20,3 +23,5 @@ mat-toolbar {
   flex-direction: column;
   overflow: auto;
 }
+
+

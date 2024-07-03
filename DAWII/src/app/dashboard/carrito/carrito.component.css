@@ -1,0 +1,32 @@
+.carrito-container img {
+    width: 50px; /* Ajusta el ancho según sea necesario */
+    height: 50px; /* Ajusta la altura según sea necesario */
+    object-fit: cover;
+    border-radius: 4px; /* Opcional: para bordes redondeados */
+  }
+
+  .dialog-content {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 16px;
+    overflow: auto;
+  }
+  
+  .carrito-container {
+    flex-grow: 1;
+    overflow: auto; /* Permite el desplazamiento si el contenido es muy largo */
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0; /* Ajusta el padding según sea necesario */
+  }
+  
+  .action-buttons button {
+    flex: 1; /* Los botones crecerán para ocupar el espacio disponible */
+    margin: 0 4px; /* Añade un pequeño margen entre los botones */
+  }
+
+  
