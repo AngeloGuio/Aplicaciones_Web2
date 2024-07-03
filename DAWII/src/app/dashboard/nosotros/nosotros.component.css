@@ -1,0 +1,46 @@
+.info1,
+.info {
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.info1 mat-card-title,
+.info mat-card-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.info1 mat-card-content,
+.info mat-card-content {
+  font-size: 16px;
+}
+
+.rombo {
+  text-align: center;
+  background-color: #f0f0f0;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.rombo h3 {
+  margin-top: 0;
+  color: #00796b;
+}
+
+.rombo p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+section .info1 img{
+    margin: auto;
+    width: 500px;
+	transition:  all 3s ease-out;
+	box-shadow: black 10px 10px 20px 10px;
+}
+
+.info1 .titulo{
+    font-size: 50px;
+}
