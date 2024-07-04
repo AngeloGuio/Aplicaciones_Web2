@@ -25,14 +25,21 @@ public class Usuario {
     private String nombres;
     @Column(name = "apellidos")
     private String apellidos;
-    @JoinColumn
-    @Column(name = "activo")
-    private Boolean activo;
-    @ManyToMany(
-            cascade = CascadeType.MERGE,
-            fetch = FetchType.EAGER )
-    @JoinTable(name = "usuario_rol", joinColumns =
-    @JoinColumn(name = "idusuario"),
+    @Column(name = "dni")
+    private String dni;
+    @Column(name = "telefono")
+    private String telefono;
+    @Column(name = "direccion")
+    private String direccion;
+    //@Column(name = "codestado")
+    //private boolean codestado;
+    @ManyToOne
+    @JoinColumn(name = "codestado")
+    private Estado activo;
+    @ManyToMany(cascade = CascadeType.MERGE,
+            fetch = FetchType.EAGER)
+    @JoinTable(name = "usuario_rol",
+            joinColumns = @JoinColumn(name = "idusuario"),
             inverseJoinColumns = @JoinColumn(name = "idrol"))
     private Set<Rol> roles;
 }

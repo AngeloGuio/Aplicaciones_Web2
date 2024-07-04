@@ -51,7 +51,7 @@ public class DetalleUsuarioService implements UserDetailsService {
         return new User(
                 usuario.getNomusuario(),
                 usuario.getPassword(),
-                usuario.getActivo(),
+                true,
                 true, true, true,
                 authorityList
         );
