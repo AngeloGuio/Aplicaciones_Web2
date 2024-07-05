@@ -15,6 +15,7 @@ public class DetalleTipoPago {
 
     @EmbeddedId
     private ProductoVentaProductoId id;
+
     @Column(name = "numerocuenta")
     private String numerocuenta;
     @Column(name="fechavencimiento", nullable = false, updatable = false)

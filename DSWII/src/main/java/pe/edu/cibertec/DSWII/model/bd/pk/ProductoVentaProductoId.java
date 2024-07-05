@@ -13,6 +13,7 @@ public class ProductoVentaProductoId implements Serializable {
 
     private Integer idproducto;
     private Integer codventapro;
+    private Integer idtipopago;
 
 
 }
