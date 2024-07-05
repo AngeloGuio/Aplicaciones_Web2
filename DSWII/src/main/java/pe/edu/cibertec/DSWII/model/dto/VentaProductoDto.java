@@ -2,9 +2,11 @@ package pe.edu.cibertec.DSWII.model.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class VentaProductoDto implements DtoEntity{
-    private Integer codventapro;
+
     private Integer idtrabajador;
     private Integer idusuario;
     private Integer cantidad;
@@ -12,4 +14,8 @@ public class VentaProductoDto implements DtoEntity{
     private String direccion;
     private Integer idtipopago;
     private double montototal;
+
+    private List<ProductoDto> produclist;
+
+
 }

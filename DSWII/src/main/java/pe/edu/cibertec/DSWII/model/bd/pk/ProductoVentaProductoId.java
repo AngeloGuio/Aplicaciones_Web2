@@ -4,10 +4,12 @@ import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Embeddable
-public class ProductoVentaProductoId {
+public class ProductoVentaProductoId implements Serializable {
 
     private Integer idproducto;
     private Integer codventapro;

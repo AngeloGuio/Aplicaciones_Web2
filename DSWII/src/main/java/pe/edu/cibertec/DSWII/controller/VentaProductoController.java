@@ -45,6 +45,17 @@ public class VentaProductoController {
         return new ResponseEntity<>(nuevoVentaProducto,HttpStatus.OK);
     }
 
+    @PostMapping("/registrar")
+    public ResponseEntity<String> registrarVentasYDetalleTipoPago(@RequestBody VentaProductoDto ventaProductoDto) {
+        boolean resultado = ventaProductoService.registrarVentasYDetalleTipoPago(ventaProductoDto);
+        if (resultado) {
+            return ResponseEntity.ok("Venta registrada exitosamente");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar la venta");
+        }
+    }
+
+
     @GetMapping("/dto")
     public ResponseEntity<List<DtoEntity>> listarVentasProductosDto(){
         List<DtoEntity> ventaproductDtoList = new ArrayList<>();

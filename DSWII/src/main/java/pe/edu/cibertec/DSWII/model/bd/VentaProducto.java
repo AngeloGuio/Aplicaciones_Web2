@@ -23,7 +23,7 @@ public class VentaProducto {
 
     @ManyToOne
     @JoinColumn(name = "idusuario")
-    private Usuario idusuario;
+    private Usuario usuario;
 
     @Column(name="fecha", nullable = false, updatable = false)
     @CreationTimestamp
@@ -41,7 +41,7 @@ public class VentaProducto {
 
     @ManyToOne
     @JoinColumn(name = "idtrabajador")
-    private Trabajador idtrabajador;
+    private Trabajador trabajador;
 
     @Column(name="cantidad")
     private Integer cantidad;

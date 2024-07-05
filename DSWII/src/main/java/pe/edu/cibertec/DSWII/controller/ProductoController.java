@@ -58,29 +58,15 @@ public class ProductoController {
         return new ResponseEntity<>(nuevoProducto,HttpStatus.OK);
     }
 
-    @PostMapping("/dto")
-    public ResponseEntity<ProductoDto> createProductoDto(@RequestBody ProductoDto productoDto) throws InstantiationException, IllegalAccessException {
-        TipoProducto tipoProducto = tipoProductoRepository.findById(productoDto.getIdtipopro()).orElse(null);
-        Proveedor proveedor = proveedorRepository.findById(productoDto.getIdproveedor()).orElse(null);
-        Estado estado = estadoRepository.findById(productoDto.isCodestado() ? 1 : 0).orElse(null); // Convertir Boolean a Integer
-        Animal animal = animalRepository.findById(productoDto.getIdanimal()).orElse(null);
-
-        if (tipoProducto == null || proveedor == null || estado == null || animal == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    @PostMapping("/registrar")
+    public ResponseEntity<String> registrarProducto(@RequestBody ProductoDto productoDto) {
+        boolean resultado = productoService.registrarProducto(productoDto);
+        if (resultado) {
+            return ResponseEntity.ok("Producto registrado exitosamente");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar el producto");
         }
-
-        Producto producto = (Producto) dtoUtil.convertirAEntity(productoDto, Producto.class);
-        producto.setIdtipopro(tipoProducto);
-        producto.setProveedor(proveedor);
-        producto.setEstado(estado);
-        producto.setAnimal(animal);
-
-        Producto savedProducto = productoService.agregarProducto(producto);
-        ProductoDto savedProductoDto = (ProductoDto) dtoUtil.convertirADto(savedProducto, ProductoDto.class.newInstance());
-
-        return new ResponseEntity<>(savedProductoDto, HttpStatus.CREATED);
     }
-
    @GetMapping("/dto")
     public ResponseEntity<List<DtoEntity>> listarProductosDto(){
         List<DtoEntity> productDtoList = new ArrayList<>();
@@ -93,41 +79,5 @@ public class ProductoController {
         return new ResponseEntity<>(productDtoList, HttpStatus.OK);
     }
 
-    @PutMapping("/dto/{id}")
-    public ResponseEntity<ProductoDto> updateProductoDto(@PathVariable Integer id, @RequestBody ProductoDto productoDto) throws InstantiationException, IllegalAccessException {
-        // Encontrar el producto existente por ID
-        Producto existingProducto = productoService.findProductoById(id);
-        if (existingProducto == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
 
-        // Obtener las entidades relacionadas
-        TipoProducto tipoProducto = tipoProductoRepository.findById(productoDto.getIdtipopro()).orElse(null);
-        Proveedor proveedor = proveedorRepository.findById(productoDto.getIdproveedor()).orElse(null);
-        Estado estado = estadoRepository.findById(productoDto.isCodestado() ? 1 : 0).orElse(null);
-        Animal animal = animalRepository.findById(productoDto.getIdanimal()).orElse(null);
-
-        // Verificar que todas las entidades relacionadas existen
-        if (tipoProducto == null || proveedor == null || estado == null || animal == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        // Actualizar los campos del producto existente
-        existingProducto.setNombre(productoDto.getNombre());
-        existingProducto.setCantidad(productoDto.getCantidad());
-        existingProducto.setPreciopublico(productoDto.getPreciopublico());
-        existingProducto.setStockminimo(productoDto.getStockminimo());
-        existingProducto.setStockmaximo(productoDto.getStockmaximo());
-        existingProducto.setPrecioproveedor(productoDto.getPrecioproveedor());
-        existingProducto.setIdtipopro(tipoProducto);
-        existingProducto.setProveedor(proveedor);
-        existingProducto.setEstado(estado);
-        existingProducto.setAnimal(animal);
-
-        // Guardar el producto actualizado
-        Producto updatedProducto = productoService.agregarProducto(existingProducto);
-        ProductoDto updatedProductoDto = (ProductoDto) dtoUtil.convertirADto(updatedProducto, ProductoDto.class.newInstance());
-
-        return new ResponseEntity<>(updatedProductoDto, HttpStatus.OK);
-    }
 }

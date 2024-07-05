@@ -22,15 +22,22 @@ public class DetalleTipoPago {
     private String fechavencimiento;
 
     @ManyToOne
-    @MapsId("idproducto")
-    @JoinColumn(name = "idproducto")
-    @JsonBackReference
-    private Producto product;
-
-    @ManyToOne
     @MapsId("codventapro")
     @JoinColumn(name = "codventapro")
     @JsonBackReference
     private VentaProducto ventaproducto;
+
+    @ManyToOne
+    @MapsId("idproducto")
+    @JoinColumn(name = "idproducto")
+    @JsonBackReference
+    private Producto producto;
+
+
+    @ManyToOne
+    @MapsId("idtipopago")
+    @JoinColumn(name = "idtipopago")
+    @JsonBackReference
+    private TipoPago tipoPago;
 
 }

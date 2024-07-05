@@ -20,7 +20,7 @@ public class Producto {
     private Integer idproducto;
     @ManyToOne
     @JoinColumn(name = "idtipopro")
-    private TipoProducto idtipopro;
+    private TipoProducto tipoproducto;
     @ManyToOne
     @JoinColumn(name = "idproveedor")
     private Proveedor proveedor;

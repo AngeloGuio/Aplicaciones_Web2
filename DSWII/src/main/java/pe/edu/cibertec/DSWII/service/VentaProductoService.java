@@ -2,7 +2,10 @@ package pe.edu.cibertec.DSWII.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import pe.edu.cibertec.DSWII.model.bd.VentaProducto;
+import org.springframework.transaction.annotation.Transactional;
+import pe.edu.cibertec.DSWII.model.bd.*;
+import pe.edu.cibertec.DSWII.model.dto.ProductoDto;
+import pe.edu.cibertec.DSWII.model.dto.VentaProductoDto;
 import pe.edu.cibertec.DSWII.repository.VentaProductoRepository;
 
 import java.util.List;
@@ -30,4 +33,35 @@ public class VentaProductoService implements IVentaProductoService {
     public VentaProducto agregarVenta(VentaProducto ventaproducto) {
         return ventaProductoRepository.save(ventaproducto);
     }
+    @Transactional()
+    public boolean registrarVentasYDetalleTipoPago(VentaProductoDto ventaProductoDto){
+        try {
+        VentaProducto venta = new VentaProducto();
+        Usuario usuario = new Usuario();
+        usuario.setIdusuario(ventaProductoDto.getIdusuario());
+        venta.setUsuario(usuario);
+
+        Trabajador trabajador = new Trabajador();
+        trabajador.setIdtrabajador(ventaProductoDto.getIdtrabajador());
+        venta.setTrabajador(trabajador);
+
+        TipoPago tipoPago = new TipoPago();
+        tipoPago.setIdtipopago(ventaProductoDto.getIdtipopago());
+        venta.setTipopago(tipoPago);
+        VentaProducto nuevaVentaProducto = ventaProductoRepository.save(venta);
+        DetalleTipoPago detalleTipoPago = new DetalleTipoPago();
+        for (ProductoDto productoDto: ventaProductoDto.getProduclist()){
+            Producto producto = new Producto();
+            producto.setIdproducto(productoDto.getIdproducto());
+            detalleTipoPago.setProducto(producto);
+
+        }
+
+        return true;
+    } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
