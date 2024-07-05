@@ -24,6 +24,14 @@
           </div>
   
           <h3>Detalles de Pago</h3>
+
+          <div class="form-section">
+            <label for="tipoPago">Tipo de Pago</label>
+            <select id="tipoPago" [(ngModel)]="tipoPagoSeleccionado" name="tipoPago" required>
+              <option *ngFor="let tipoPago of tiposPago" [value]="tipoPago">{{ tipoPago }}</option>
+            </select>
+          </div>
+          
           <div class="form-section">
             <label for="numeroTarjeta">Número de Tarjeta</label>
             <input type="text" id="numeroTarjeta" [(ngModel)]="datosPago.numeroTarjeta" name="numeroTarjeta" required>

@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Editar Usuario</h2>
+<div mat-dialog-content>
+  <!-- Aquí van los campos para editar el usuario -->
+  <mat-form-field>
+    <label>Nombre de Usuario</label>
+    <input matInput placeholder="Nombre de usuario" [(ngModel)]="usuario.nomusuario">
+  </mat-form-field>
+  <mat-form-field>
+    <label>Email</label>
+    <input matInput placeholder="Email" [(ngModel)]="usuario.email">
+  </mat-form-field>
+  <mat-form-field>
+    <label>Nombres</label>
+    <input matInput placeholder="Nombres" [(ngModel)]="usuario.nombres">
+  </mat-form-field>
+  <mat-form-field>
+    <label>Apellidos</label>
+    <input matInput placeholder="Apellidos" [(ngModel)]="usuario.apellidos">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="guardar()">Guardar</button>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+</div>

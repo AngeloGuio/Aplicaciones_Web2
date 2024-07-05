@@ -12,6 +12,7 @@ import { Producto } from '../../home/producto';
   styleUrl: './facturacion.component.css'
 })
 export class FacturacionComponent implements OnInit {
+  tiposPago: string[] = [];
   productos: Producto[] = [];
   columnasMostradas: string[] = ['nombre', 'precio', 'cantidad', 'subtotal'];
   costoTransporte: number = 10.00; // Puedes ajustar el costo de transporte aquí
@@ -30,6 +31,10 @@ export class FacturacionComponent implements OnInit {
     cvv: ''
   };
 
+  tipoPagoSeleccionado = {
+    
+  }
+
   constructor(
     private carritoService: CarritoService,
     private router: Router
@@ -38,6 +43,7 @@ export class FacturacionComponent implements OnInit {
   ngOnInit(): void {
     this.productos = this.carritoService.obtenerProductos();
     this.calcularTotal();
+    this.tiposPago = this.carritoService.obtenerTiposPago();
   }
 
   calcularSubtotal(producto: Producto): number {

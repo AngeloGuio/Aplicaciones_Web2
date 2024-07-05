@@ -28,4 +28,21 @@ public class UsuarioService implements IUsuarioService{
     public Usuario agregarUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
+
+    @Override
+    public Usuario actualizarUsuario(Integer id, Usuario usuarioActualizado) {
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
+        if (usuarioOptional.isEmpty()) {
+            throw new IllegalArgumentException("El usuario con ID " + id + " no existe");
+        }
+
+        Usuario usuario = usuarioOptional.get();
+        usuario.setNomusuario(usuarioActualizado.getNomusuario());
+        usuario.setEmail(usuarioActualizado.getEmail());
+        usuario.setPassword(usuarioActualizado.getPassword());
+        usuario.setNombres(usuarioActualizado.getNombres());
+        usuario.setApellidos(usuarioActualizado.getApellidos());
+
+        return usuarioRepository.save(usuario);
+    }
 }

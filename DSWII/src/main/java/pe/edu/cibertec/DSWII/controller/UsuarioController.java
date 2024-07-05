@@ -39,4 +39,11 @@ public class UsuarioController {
         return new ResponseEntity<>(nuevousuario,HttpStatus.CREATED);
 
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> actualizarResponseUsuario(@RequestBody Integer id ,@RequestBody Usuario usuario){
+        Usuario actualizarusuario=usuarioService.actualizarUsuario(id, usuario);
+        return new ResponseEntity<>(actualizarusuario,HttpStatus.CREATED);
+
+    }
 }

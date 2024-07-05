@@ -20,4 +20,9 @@ export class UsuarioService {
     
     return this.http.get<Usuario[]>(this.urlApi, { headers });
   }
+
+  actualizarUsuario(id: number, usuario: Usuario): Observable<Usuario> {
+    const url = `${this.urlApi}/${id}`;
+    return this.http.put<Usuario>(url, usuario);
+  }
 }
