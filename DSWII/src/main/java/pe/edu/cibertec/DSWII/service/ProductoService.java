@@ -37,9 +37,8 @@ public class ProductoService implements IProductoService{
 
 
 
-    public boolean registrarProducto(ProductoDto productoDto){
+    public boolean registraryActualizarProducto(ProductoDto productoDto){
         try {
-
             Producto nuevoproducto = new Producto();
             if(productoDto.getIdproducto() > 0){
                 nuevoproducto.setIdproducto(productoDto.getIdproducto());
@@ -58,11 +57,9 @@ public class ProductoService implements IProductoService{
             nuevoproducto.setStockminimo(productoDto.getStockminimo());
             nuevoproducto.setStockmaximo(productoDto.getStockmaximo());
 
-
             Estado estado = new Estado();
             estado.setCodestado(productoDto.isCodestado());
             nuevoproducto.setEstado(estado);
-
 
             Animal animal = new Animal();
             animal.setIdanimal(productoDto.getIdanimal());
@@ -71,7 +68,6 @@ public class ProductoService implements IProductoService{
             nuevoproducto.setPrecioproveedor(productoDto.getPrecioproveedor());
 
             productoRepository.save(nuevoproducto);
-
 
             return true;
         } catch (Exception e) {

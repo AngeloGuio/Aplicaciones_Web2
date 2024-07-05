@@ -30,6 +30,9 @@ public class UsuarioController {
         return new ResponseEntity<>(usuarioid,HttpStatus.OK);
 
     }
+
+
+
     @PostMapping("")
     public ResponseEntity<Usuario> nuevoResponseUsuario(@RequestBody Usuario usuario){
         Usuario nuevousuario=usuarioService.agregarUsuario(usuario);

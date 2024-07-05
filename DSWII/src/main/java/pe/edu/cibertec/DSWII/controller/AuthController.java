@@ -35,7 +35,6 @@ public class AuthController {
 
 
 
-
     @PostMapping("/login")
     @Transactional(readOnly = true)
     public ResponseEntity<UsuarioResponse> autenticarUsuario(

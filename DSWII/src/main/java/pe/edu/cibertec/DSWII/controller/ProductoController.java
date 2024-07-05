@@ -59,14 +59,26 @@ public class ProductoController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<String> registrarProducto(@RequestBody ProductoDto productoDto) {
-        boolean resultado = productoService.registrarProducto(productoDto);
+    public ResponseEntity<String> registraryActualizarProducto(@RequestBody ProductoDto productoDto) {
+        boolean resultado = productoService.registraryActualizarProducto(productoDto);
         if (resultado) {
             return ResponseEntity.ok("Producto registrado exitosamente");
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar el producto");
         }
     }
+
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<String> actualizarProducto(@PathVariable Integer id, @RequestBody ProductoDto productoDto) {
+        productoDto.setIdproducto(id); // Asegúrate de que el ID esté establecido
+        boolean resultado = productoService.registraryActualizarProducto(productoDto);
+        if (resultado) {
+            return ResponseEntity.ok("Producto actualizado exitosamente");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el producto");
+        }
+    }
+
    @GetMapping("/dto")
     public ResponseEntity<List<DtoEntity>> listarProductosDto(){
         List<DtoEntity> productDtoList = new ArrayList<>();
