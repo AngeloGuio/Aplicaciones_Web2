@@ -18,6 +18,7 @@ import pe.edu.cibertec.DSWII.model.bd.Usuario;
 import pe.edu.cibertec.DSWII.model.response.UsuarioResponse;
 import pe.edu.cibertec.DSWII.service.DetalleUsuarioService;
 
+
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +32,9 @@ public class AuthController {
     private DetalleUsuarioService detalleUsuarioService;
 
     private AuthenticationManager authenticationManager;
+
+
+
 
     @PostMapping("/login")
     @Transactional(readOnly = true)

@@ -10,6 +10,7 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class ProductoService implements IProductoService{
+
     private ProductoRepository productoRepository;
     @Override
     public List<Producto> productoList() {
@@ -27,4 +28,11 @@ public class ProductoService implements IProductoService{
     public Producto agregarProducto(Producto producto) {
         return productoRepository.save(producto);
     }
+
+    @Override
+    public Producto findProductoById(Integer id) {
+        return null;
+    }
+
+
 }

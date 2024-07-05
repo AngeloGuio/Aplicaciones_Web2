@@ -39,6 +39,8 @@ public class DetalleUsuarioService implements UserDetailsService {
         return grantedAuthorities;
     }
 
+
+
     public Usuario findByNomusuario(String usuario){
         return usuarioRepository.findByNomusuario(usuario);
     }

@@ -10,6 +10,7 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class UsuarioService implements IUsuarioService{
+
     private UsuarioRepository usuarioRepository;
     @Override
     public List<Usuario> usuarioList() {

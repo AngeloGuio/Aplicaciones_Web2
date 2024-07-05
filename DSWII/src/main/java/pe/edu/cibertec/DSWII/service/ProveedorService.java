@@ -10,6 +10,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @Service
 public class ProveedorService implements IProveedorService{
+
     ProveedorRepository proveedorRepository;
     @Override
     public List<Proveedor> proveedorList() {

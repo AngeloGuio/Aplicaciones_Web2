@@ -3,8 +3,9 @@ package pe.edu.cibertec.DSWII.model.bd;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter

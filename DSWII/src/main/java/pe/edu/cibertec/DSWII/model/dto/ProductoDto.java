@@ -1,6 +1,9 @@
 package pe.edu.cibertec.DSWII.model.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 public class ProductoDto implements DtoEntity{

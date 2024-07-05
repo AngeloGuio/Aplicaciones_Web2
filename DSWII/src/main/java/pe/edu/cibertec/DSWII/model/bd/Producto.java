@@ -23,7 +23,7 @@ public class Producto {
     private TipoProducto idtipopro;
     @ManyToOne
     @JoinColumn(name = "idproveedor")
-    private Proveedor idproveedor;
+    private Proveedor proveedor;
     private String nombre;
     private Integer cantidad;
     private Double preciopublico;
@@ -31,10 +31,10 @@ public class Producto {
     private Integer stockmaximo;
     @ManyToOne
     @JoinColumn(name = "codestado")
-    private Estado codestado;
+    private Estado estado;
     @ManyToOne
     @JoinColumn(name = "idanimal")
-    private Animal idanimal;
+    private Animal animal;
     private Double precioproveedor;
 
     @OneToMany(mappedBy = "product",
