@@ -8,6 +8,7 @@ import { ContactoComponent } from './dashboard/contacto/contacto.component';
 import { NosotrosComponent } from './dashboard/nosotros/nosotros.component';
 import { UsuarioComponent } from './dashboard/usuario/usuario.component';
 import { PagoComponent } from './dashboard/carrito/detalle-carrito/detalle-carrito.component';
+import { FacturacionComponent } from './dashboard/carrito/facturacion/facturacion.component';
 
 export const routes: Routes = [
     { path: '', 
@@ -18,6 +19,7 @@ export const routes: Routes = [
             { path: 'nosotros', component: NosotrosComponent },
             { path: 'pago', component: NosotrosComponent },
             { path: 'detalle-carrito', component: PagoComponent },
+            { path: 'facturacion', component: FacturacionComponent},
             // Rutas protegidas
             { path: 'usuario', component: UsuarioComponent, canActivate: [authGuard], data: { protegida: true } },
         ]

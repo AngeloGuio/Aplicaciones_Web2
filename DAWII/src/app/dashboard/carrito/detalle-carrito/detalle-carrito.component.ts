@@ -46,5 +46,6 @@ export class PagoComponent implements OnInit {
   }
 
   procederAlPago(): void {
+    this.router.navigate(['/facturacion']);
   }
 }
