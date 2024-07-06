@@ -61,7 +61,7 @@ export class CategoriaDetalleComponent {
     if(this.formType === FormType.Crear){
       this.registrarPost(this.postForm.value)
     }else{
-      const postValue = {...this.postForm.value, idproducto: this.postId }
+      const postValue = {...this.postForm.value, idtipopro: this.postId }
       this.actualizarPost(postValue)
     }
   }
@@ -80,7 +80,7 @@ export class CategoriaDetalleComponent {
     this.categoriaService.updateCategory(categoria)
     .subscribe(
       (data) => {
-        this.route.navigate(['/category']);
+        this.route.navigate(['/categoria']);
         Notiflix.Notify.success(data.message);
       }
     )
