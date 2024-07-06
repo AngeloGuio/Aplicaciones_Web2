@@ -26,6 +26,17 @@
       </mat-menu>
     </div>
 
+        <!-- Menú desplegable para la sección de Reportes -->
+        <div *ngIf="estaLogeado()">
+          <button mat-icon-button [matMenuTriggerFor]="menuReportes">
+            <mat-icon>assessment</mat-icon>
+          </button>
+          <mat-menu #menuReportes="matMenu">
+            <button mat-menu-item (click)="irVenta()">Reporte de Ventas</button>
+          </mat-menu>
+        </div>
+      
+
 
     <span class="example-spacer"></span>
     

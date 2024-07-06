@@ -14,6 +14,7 @@ import { ProductosComponent } from './dashboard/productos/productos.component';
 import { ProductoDetalleComponent } from './dashboard/productos/producto-detalle/producto-detalle.component';
 import { CategoriaComponent } from './dashboard/categoria/categoria.component';
 import { CategoriaDetalleComponent } from './dashboard/categoria/categoria-detalle/categoria-detalle.component';
+import { VentaComponent } from './dashboard/venta/venta.component';
 
 export const routes: Routes = [
     { path: '', 
@@ -33,6 +34,7 @@ export const routes: Routes = [
             { path: "producto/:id", component: ProductoDetalleComponent, canActivate: [authGuard]},
             { path: 'categoria', component: CategoriaComponent, canActivate: [authGuard] },
             { path: "categoria/:id", component: CategoriaDetalleComponent, canActivate: [authGuard]},
+            { path: "venta", component: VentaComponent, canActivate: [authGuard]},
         ]
     },
     { path: 'login', component: LoginComponent, canActivate: [authGuard] },

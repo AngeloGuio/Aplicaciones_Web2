@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Producto } from '../home/producto';
 import { BehaviorSubject } from 'rxjs';
+import Notiflix from 'notiflix';
 
 @Injectable({
   providedIn: 'root'
@@ -27,9 +28,11 @@ export class CarritoService {
     if (productoExistente) {
       // Incrementa la cantidad si el producto ya existe
       productoExistente.cantidad += 1;
+      Notiflix.Notify.success('Se aumento la cantidad en 1 para este producto');
     } else {
       // Agrega el producto al carrito con cantidad inicial de 1
       this.carrito.push({ ...producto, cantidad: 1 });
+      Notiflix.Notify.success('Se agregó producto al carrito');
     }
     this.guardarCarrito();
     this.actualizarCantidadProductos();

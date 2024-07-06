@@ -112,4 +112,29 @@ public class VentaService {
         return detalleDto;
     }
 
+    private DetalleVentaDto convertirDetalleVentaADetalleVentaDto2(DetalleVenta detalle) {
+        Producto producto = detalle.getProducto();
+        DetalleVentaDto detalleDto = new DetalleVentaDto();
+        detalleDto.setIddetalle(detalle.getIddetalle());
+        detalleDto.setIdventa(detalle.getVenta().getIdventa());
+        detalleDto.setIdproducto(producto.getIdproducto());
+        detalleDto.setCantidad(detalle.getCantidad());
+        detalleDto.setPrecio(detalle.getPrecio());
+        // Aquí agregas la información adicional del producto
+        detalleDto.setNombreProducto(producto.getNombre());
+        detalleDto.setDescripcionTipoProducto(producto.getTipoproducto().getDesctipopro());
+        detalleDto.setNombreProveedor(producto.getProveedor().getEmpresa());
+
+        // ... otros datos que necesites
+        return detalleDto;
+    }
+
+
+    public List<DetalleVentaDto> obtenerTodosLosDetallesDeVenta() {
+        List<DetalleVenta> detallesVenta = detalleVentaRepository.findAll();
+        return detallesVenta.stream()
+                .map(this::convertirDetalleVentaADetalleVentaDto2)
+                .collect(Collectors.toList());
+    }
+
 }

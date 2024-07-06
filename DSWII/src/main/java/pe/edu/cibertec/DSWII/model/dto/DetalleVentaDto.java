@@ -17,4 +17,10 @@ public class DetalleVentaDto {
     private Integer idproducto;
     private Integer cantidad;
     private BigDecimal precio;
+    // Nuevos campos para información adicional del producto
+    private String nombreProducto;
+    private String descripcionTipoProducto;
+    private String nombreProveedor;
+
+    // Puedes agregar más campos si es necesario
 }

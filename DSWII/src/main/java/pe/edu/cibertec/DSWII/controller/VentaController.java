@@ -5,10 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.cibertec.DSWII.model.dto.ClienteDto;
+import pe.edu.cibertec.DSWII.model.dto.DetalleVentaDto;
 import pe.edu.cibertec.DSWII.model.dto.RegistroVentaDto;
 import pe.edu.cibertec.DSWII.model.dto.VentaDto;
 import pe.edu.cibertec.DSWII.model.response.ApiResponse;
 import pe.edu.cibertec.DSWII.service.VentaService;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -31,6 +34,12 @@ public class VentaController {
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ApiResponse(false, "Error al registrar la venta: " + e.getMessage()));
         }
+    }
+
+    @GetMapping("/detalles")
+    public ResponseEntity<List<DetalleVentaDto>> obtenerTodosLosDetallesDeVenta() {
+        List<DetalleVentaDto> detalles = ventaService.obtenerTodosLosDetallesDeVenta();
+        return ResponseEntity.ok(detalles);
     }
 
 
