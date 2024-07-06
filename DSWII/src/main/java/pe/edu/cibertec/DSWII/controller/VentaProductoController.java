@@ -15,6 +15,7 @@ import pe.edu.cibertec.DSWII.util.DtoUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -45,6 +46,7 @@ public class VentaProductoController {
         return new ResponseEntity<>(nuevoVentaProducto,HttpStatus.OK);
     }
 
+
     @PostMapping("/registrar")
     public ResponseEntity<String> registrarVentasYDetalleTipoPago(@RequestBody VentaProductoDto ventaProductoDto) {
         boolean resultado = ventaProductoService.registrarVentasYDetalleTipoPago(ventaProductoDto);
@@ -57,15 +59,27 @@ public class VentaProductoController {
 
 
     @GetMapping("/dto")
-    public ResponseEntity<List<DtoEntity>> listarVentasProductosDto(){
-        List<DtoEntity> ventaproductDtoList = new ArrayList<>();
-        ventaproductDtoList = iVentaProductoService.ventaproductoList()
-                .stream()
-                .map(x -> new DtoUtil().convertirADto(x, new VentaProductoDto()))
+    public ResponseEntity<List<VentaProductoDto>> listarVentasDto() {
+        List<VentaProducto> ventas = ventaProductoService.ventaproductoList();
+        List<VentaProductoDto> ventasDto = ventas.stream()
+                .map(ventaProductoService::convertirADto)
                 .collect(Collectors.toList());
-        if(ventaproductDtoList.isEmpty())
+        if (ventasDto.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        return new ResponseEntity<>(ventaproductDtoList, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(ventasDto, HttpStatus.OK);
+    }
+    @GetMapping("/dto/{id}")
+    public ResponseEntity<VentaProductoDto> obtenerVentaProductoDtoPorId(@PathVariable Integer id) {
+        Optional<VentaProducto> ventaProductoOpt = ventaProductoService.buscarVentaXID(id);
+
+        if (ventaProductoOpt.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        VentaProducto ventaProducto = ventaProductoOpt.get();
+        VentaProductoDto ventaProductoDto = ventaProductoService.convertirADto(ventaProducto);
+        return new ResponseEntity<>(ventaProductoDto, HttpStatus.OK);
     }
 
 }

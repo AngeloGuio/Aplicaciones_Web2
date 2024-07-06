@@ -3,8 +3,13 @@ package pe.edu.cibertec.DSWII.util;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 import pe.edu.cibertec.DSWII.model.bd.Producto;
+import pe.edu.cibertec.DSWII.model.bd.VentaProducto;
 import pe.edu.cibertec.DSWII.model.dto.DtoEntity;
 import pe.edu.cibertec.DSWII.model.dto.ProductoDto;
+import pe.edu.cibertec.DSWII.model.dto.VentaProductoDto;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class DtoUtil {
@@ -39,5 +44,9 @@ public class DtoUtil {
         productoDto.setPrecioproveedor(producto.getPrecioproveedor());
         return productoDto;
     }
+
+
+
+
 
 }
