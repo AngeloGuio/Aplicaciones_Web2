@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CategoriaComponent implements OnInit{
 
-  displayedColumns: string[] = ['idtipopro', 'desctipopro'];
+  displayedColumns: string[] = ['idtipopro', 'desctipopro', 'actions'];
   dataSource = new MatTableDataSource<Categoria>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

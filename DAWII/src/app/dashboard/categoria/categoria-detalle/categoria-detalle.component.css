@@ -1,0 +1,33 @@
+.categoria-detalle-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .categoria-detalle-card {
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .categoria-detalle-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .form-half-width {
+    flex: 1;
+    min-width: calc(50% - 20px);
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
