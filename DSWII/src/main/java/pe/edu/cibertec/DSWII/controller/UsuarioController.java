@@ -33,14 +33,14 @@ public class UsuarioController {
 
 
 
-    @PostMapping("")
+    @PostMapping("/registrar")
     public ResponseEntity<Usuario> nuevoResponseUsuario(@RequestBody Usuario usuario){
         Usuario nuevousuario=usuarioService.agregarUsuario(usuario);
         return new ResponseEntity<>(nuevousuario,HttpStatus.CREATED);
 
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("actualizar/{id}")
     public ResponseEntity<Usuario> actualizarResponseUsuario(@RequestBody Integer id ,@RequestBody Usuario usuario){
         Usuario actualizarusuario=usuarioService.actualizarUsuario(id, usuario);
         return new ResponseEntity<>(actualizarusuario,HttpStatus.CREATED);

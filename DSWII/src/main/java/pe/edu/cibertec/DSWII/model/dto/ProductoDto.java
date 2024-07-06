@@ -7,6 +7,7 @@ import lombok.Setter;
 
 @Data
 public class ProductoDto implements DtoEntity{
+
     private Integer idproducto;
     private Integer idtipopro;
     private Integer idproveedor;
@@ -18,4 +19,5 @@ public class ProductoDto implements DtoEntity{
     private boolean codestado;
     private Integer idanimal;
     private double precioproveedor;
+
 }

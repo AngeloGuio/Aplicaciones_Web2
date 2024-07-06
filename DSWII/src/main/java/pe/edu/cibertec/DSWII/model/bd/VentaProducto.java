@@ -21,6 +21,8 @@ public class VentaProducto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codventapro;
 
+
+
     @Column(name="fecha", nullable = false, updatable = false)
     @CreationTimestamp
     private String fecha;

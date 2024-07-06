@@ -40,8 +40,10 @@ public class ProductoService implements IProductoService{
     public boolean registraryActualizarProducto(ProductoDto productoDto){
         try {
             Producto nuevoproducto = new Producto();
-            if(productoDto.getIdproducto() > 0){
+
+            if (productoDto.getIdproducto() != null && productoDto.getIdproducto() > 0) {
                 nuevoproducto.setIdproducto(productoDto.getIdproducto());
+
             }
             TipoProducto tipoProducto = new TipoProducto();
             tipoProducto.setIdtipopro(productoDto.getIdtipopro());
