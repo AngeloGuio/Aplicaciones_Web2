@@ -37,13 +37,6 @@ public class VentaProductoService implements IVentaProductoService {
     public boolean registrarVentasYDetalleTipoPago(VentaProductoDto ventaProductoDto){
         try {
         VentaProducto venta = new VentaProducto();
-        Usuario usuario = new Usuario();
-        usuario.setIdusuario(ventaProductoDto.getIdusuario());
-        venta.setUsuario(usuario);
-
-        Trabajador trabajador = new Trabajador();
-        trabajador.setIdtrabajador(ventaProductoDto.getIdtrabajador());
-        venta.setTrabajador(trabajador);
 
         TipoPago tipoPago = new TipoPago();
         tipoPago.setIdtipopago(ventaProductoDto.getIdtipopago());

@@ -21,10 +21,6 @@ public class VentaProducto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codventapro;
 
-    @ManyToOne
-    @JoinColumn(name = "idusuario")
-    private Usuario usuario;
-
     @Column(name="fecha", nullable = false, updatable = false)
     @CreationTimestamp
     private String fecha;
@@ -38,10 +34,6 @@ public class VentaProducto {
     @ManyToOne
     @JoinColumn(name = "idtipopago")
     private TipoPago tipopago;
-
-    @ManyToOne
-    @JoinColumn(name = "idtrabajador")
-    private Trabajador trabajador;
 
     @Column(name="cantidad")
     private Integer cantidad;
