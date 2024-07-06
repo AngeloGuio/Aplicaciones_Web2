@@ -67,6 +67,9 @@ export class DashboardComponent {
   irModProducto():void{
     this.router.navigate(["producto"], {relativeTo: this.route})
   }
+  irModCategoria(): void{
+    this.router.navigate(["categoria"], {relativeTo: this.route})
+  }
 
   abrirCarrito(): void {
     const dialogRef = this.dialog.open(CarritoComponent, {
