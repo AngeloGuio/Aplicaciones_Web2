@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class PagoComponent implements OnInit {
   productos!: Producto[];
-  columnasMostradas: string[] = ['imagen', 'nombre', 'precio', 'cantidad', 'subtotal'];
+  columnasMostradas: string[] = ['imagen', 'nombre', 'precio', 'cantidad', 'subtotal','acciones'];
 
   constructor(
     private carritoService: CarritoService,
@@ -39,7 +39,10 @@ export class PagoComponent implements OnInit {
       this.carritoService.actualizarProducto(producto);
     }
   }
-  
+  eliminarProducto(producto: Producto): void {
+    this.carritoService.eliminarProducto(producto);
+    this.productos = this.carritoService.obtenerProductos();
+  }
 
   calcularTotal(): number {
     return this.productos.reduce((acc, producto) => acc + (producto.cantidad * producto.preciopublico), 0);
