@@ -15,6 +15,7 @@ import pe.edu.cibertec.DSWII.util.DtoUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -26,17 +27,6 @@ public class ProductoController {
 
    private IProductoService iProductoService;
 
-    private ProductoRepository productoRepository;
-
-    private TipoProductoRepository tipoProductoRepository;
-
-    private ProveedorRepository proveedorRepository;
-
-    private EstadoRepository estadoRepository;
-
-    private AnimalRepository animalRepository;
-
-    private DtoUtil dtoUtil;
 
 
     @GetMapping("")
@@ -52,6 +42,20 @@ public class ProductoController {
         );
         return new ResponseEntity<>(productoresponse,HttpStatus.OK);
     }
+
+    @GetMapping("/dto/{id}")
+    public ResponseEntity<ProductoDto> obtenerProductoDtoPorId(@PathVariable Integer id) {
+        Optional<Producto> productoOpt = productoService.buscarProductoXID(id);
+
+        if (productoOpt.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        Producto producto = productoOpt.get();
+        ProductoDto productoDto = new DtoUtil().convertirADto(producto, new ProductoDto());
+        return new ResponseEntity<>(productoDto, HttpStatus.OK);
+    }
+
     @PostMapping("")
     public ResponseEntity<Producto> productoResponseagregar(@RequestBody Producto producto){
         Producto nuevoProducto=productoService.agregarProducto(producto);
@@ -59,7 +63,7 @@ public class ProductoController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<String> registraryActualizarProducto(@RequestBody ProductoDto productoDto) {
+    public ResponseEntity<String> registrarProducto(@RequestBody ProductoDto productoDto) {
         boolean resultado = productoService.registraryActualizarProducto(productoDto);
         if (resultado) {
             return ResponseEntity.ok("Producto registrado exitosamente");
@@ -79,17 +83,17 @@ public class ProductoController {
         }
     }
 
-   @GetMapping("/dto")
-    public ResponseEntity<List<DtoEntity>> listarProductosDto(){
-        List<DtoEntity> productDtoList = new ArrayList<>();
-        productDtoList = iProductoService.productoList()
+
+    @GetMapping("/dto")
+    public ResponseEntity<List<ProductoDto>> listarProductoDto() {
+        List<ProductoDto> productDtoList = productoService.productoList()
                 .stream()
-                .map(x -> new DtoUtil().convertirADto(x, new ProductoDto()))
+                .map(producto -> new DtoUtil().convertirADto(producto, new ProductoDto()))
                 .collect(Collectors.toList());
-        if(productDtoList.isEmpty())
+
+        if (productDtoList.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(productDtoList, HttpStatus.OK);
     }
-
 
 }

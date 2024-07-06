@@ -38,6 +38,7 @@ public class VentaProductoService implements IVentaProductoService {
         try {
         VentaProducto venta = new VentaProducto();
 
+
         TipoPago tipoPago = new TipoPago();
         tipoPago.setIdtipopago(ventaProductoDto.getIdtipopago());
         venta.setTipopago(tipoPago);
