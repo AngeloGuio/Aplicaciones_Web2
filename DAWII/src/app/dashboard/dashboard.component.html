@@ -12,10 +12,30 @@
         <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item >Perfil</button>
-        <button mat-menu-item >Configuraciones</button>
-        <button mat-menu-item (click)="irModUsuario()"> Usuario </button>
-        <button mat-menu-item (click)="irModProducto()"> Producto </button>
+        <button mat-menu-item (click)="irModUsuario()"> Gestionar Usuarios </button>
+      </mat-menu>
+    </div>
+    <!-- Menú desplegable para la sección de Productos -->
+    <div *ngIf="estaLogeado()">
+      <button mat-icon-button [matMenuTriggerFor]="menuProductos">
+        <mat-icon>shopping_basket</mat-icon>
+      </button>
+      <mat-menu #menuProductos="matMenu">
+        <button mat-menu-item (click)="irModProducto()">Gestionar Productos</button>
+        <button mat-menu-item>Categorías</button>
+        <!-- Agrega más opciones según sea necesario -->
+      </mat-menu>
+    </div>
+
+    <!-- Menú desplegable para la sección de Reportes -->
+    <div *ngIf="estaLogeado()">
+      <button mat-icon-button [matMenuTriggerFor]="menuReportes">
+        <mat-icon>assessment</mat-icon>
+      </button>
+      <mat-menu #menuReportes="matMenu">
+        <button mat-menu-item>Reporte de Ventas</button>
+        <button mat-menu-item>Reporte de Inventario</button>
+        <!-- Agrega más opciones según sea necesario -->
       </mat-menu>
     </div>
   

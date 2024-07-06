@@ -33,7 +33,8 @@ public class SecurityConfig {
                         auth ->
                             auth
                             .requestMatchers(HttpMethod.POST,"/api/v1/auth/**").permitAll()
-                            .requestMatchers(HttpMethod.GET,"/api/v1/producto/**")
+                            .requestMatchers(HttpMethod.GET,"/api/v1/producto/**").permitAll()
+                            .requestMatchers(HttpMethod.GET,"/api/v1/tipoPago")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())

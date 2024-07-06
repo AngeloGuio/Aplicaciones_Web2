@@ -3,6 +3,8 @@ import { MaterialModule } from '../../../material/material.module';
 import { CarritoService } from '../carrito.service';
 import { Router } from '@angular/router';
 import { Producto } from '../../home/producto';
+import { TipoPago } from './TipoPago';
+import { TipopagoService } from './tipopago.service';
 
 @Component({
   selector: 'app-facturacion',
@@ -12,10 +14,11 @@ import { Producto } from '../../home/producto';
   styleUrl: './facturacion.component.css'
 })
 export class FacturacionComponent implements OnInit {
-  tiposPago: string[] = [];
+  tiposPago: TipoPago[] = [];
   productos: Producto[] = [];
   columnasMostradas: string[] = ['nombre', 'precio', 'cantidad', 'subtotal'];
-  costoTransporte: number = 10.00; // Puedes ajustar el costo de transporte aquí
+  costoTransporte: number = 10.00;
+
   total: number = 0;
   
   datosPersonales = {
@@ -37,13 +40,26 @@ export class FacturacionComponent implements OnInit {
 
   constructor(
     private carritoService: CarritoService,
-    private router: Router
+    private router: Router,
+    private tipoPagoService: TipopagoService,
   ) {}
 
   ngOnInit(): void {
     this.productos = this.carritoService.obtenerProductos();
     this.calcularTotal();
-    this.tiposPago = this.carritoService.obtenerTiposPago();
+    this.cargarTiposPago();
+  }
+
+  cargarTiposPago(): void {
+    this.tipoPagoService.obtenerTiposPago().subscribe(
+      (data) => {
+        console.log(data)
+        this.tiposPago = data;
+      },
+      (error) => {
+        console.error('Error al obtener los tipos de pago:', error);
+      }
+    );
   }
 
   calcularSubtotal(producto: Producto): number {
