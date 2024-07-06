@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pe.edu.cibertec.DSWII.model.bd.*;
+import pe.edu.cibertec.DSWII.model.dto.ProductoDetalleDto;
 import pe.edu.cibertec.DSWII.model.dto.ProductoDto;
 import pe.edu.cibertec.DSWII.model.dto.VentaProductoDto;
 import pe.edu.cibertec.DSWII.repository.VentaProductoRepository;
@@ -37,21 +38,37 @@ public class VentaProductoService implements IVentaProductoService {
     @Transactional()
     public boolean registrarVentasYDetalleTipoPago(VentaProductoDto ventaProductoDto){
         try {
-        VentaProducto venta = new VentaProducto();
+        VentaProducto nuevaventa = new VentaProducto();
 
         Cliente cliente = new Cliente();
         cliente.setIdcliente(ventaProductoDto.getIdcliente());
 
+        nuevaventa.setFecha(ventaProductoDto.getFecha());
+        nuevaventa.setDireccion(ventaProductoDto.getDireccion());
+        nuevaventa.setMontototal(ventaProductoDto.getMontototal());
+
         TipoPago tipoPago = new TipoPago();
         tipoPago.setIdtipopago(ventaProductoDto.getIdtipopago());
 
-        venta.setTipopago(tipoPago);
-        VentaProducto nuevaVentaProducto = ventaProductoRepository.save(venta);
+        nuevaventa.setCantidad(ventaProductoDto.getCantidad());
+
+
+        nuevaventa.setTipopago(tipoPago);
+        VentaProducto nuevaVentaProducto = ventaProductoRepository.save(nuevaventa);
+
+
         DetalleTipoPago detalleTipoPago = new DetalleTipoPago();
-        for (ProductoDto productoDto: ventaProductoDto.getProduclist()){
+        for (ProductoDetalleDto productoDetalleDto: ventaProductoDto.getProduclist()){
             Producto producto = new Producto();
-            producto.setIdproducto(productoDto.getIdproducto());
-            detalleTipoPago.setProducto(producto);
+            producto.setIdproducto(productoDetalleDto.getIdproducto());
+
+            TipoProducto tipoProducto = new TipoProducto();
+            tipoProducto.setIdtipopro(productoDetalleDto.getIdtipopro());
+
+            producto.setNombre(productoDetalleDto.getNombre());
+
+
+            detalleTipoPago.setProductos(producto);
 
         }
 
@@ -61,39 +78,33 @@ public class VentaProductoService implements IVentaProductoService {
             return false;
         }
     }
-
     public VentaProductoDto convertirADto(VentaProducto ventaProducto) {
         VentaProductoDto ventaProductoDto = new VentaProductoDto();
         ventaProductoDto.setCodventapro(ventaProducto.getCodventapro());
         ventaProductoDto.setIdcliente(ventaProducto.getCliente() != null ? ventaProducto.getCliente().getIdcliente() : null);
-        ventaProductoDto.setCantidad(ventaProducto.getCantidad());
-        ventaProductoDto.setFecha(ventaProducto.getFecha().toString());
+        ventaProductoDto.setFecha(ventaProducto.getFecha());
         ventaProductoDto.setDireccion(ventaProducto.getDireccion());
-        ventaProductoDto.setIdtipopago(ventaProducto.getTipopago() != null ? ventaProducto.getTipopago().getIdtipopago() : null);
         ventaProductoDto.setMontototal(ventaProducto.getMontototal());
+        ventaProductoDto.setIdtipopago(ventaProducto.getTipopago() != null ? ventaProducto.getTipopago().getIdtipopago() : null);
+        ventaProductoDto.setCantidad(ventaProducto.getCantidad());
 
-        List<ProductoDto> productos = ventaProducto.getDetalleTipoPagoList()
+        List<ProductoDetalleDto> productos = ventaProducto.getProducto()
                 .stream()
                 .map(detalle -> {
-                    ProductoDto productoDto = new ProductoDto();
-                    Producto producto = detalle.getProducto();
-                    productoDto.setIdproducto(producto.getIdproducto());
-                    productoDto.setIdtipopro(producto.getTipoproducto().getIdtipopro());
-                    productoDto.setIdproveedor(producto.getProveedor().getIdproveedor());
-                    productoDto.setNombre(producto.getNombre());
-                    productoDto.setCantidad(producto.getCantidad());
-                    productoDto.setPreciopublico(producto.getPreciopublico());
-                    productoDto.setStockminimo(producto.getStockminimo());
-                    productoDto.setStockmaximo(producto.getStockmaximo());
-                    productoDto.setCodestado(producto.getEstado().getCodestado());
-                    productoDto.setIdanimal(producto.getAnimal().getIdanimal());
-                    productoDto.setPrecioproveedor(producto.getPrecioproveedor());
-                    return productoDto;
+                    ProductoDetalleDto productoDetalleDto = new ProductoDetalleDto();
+                    Producto producto = detalle.getProductos();
+                    productoDetalleDto.setIdproducto(producto.getIdproducto());
+                    productoDetalleDto.setIdtipopro(producto.getTipoproducto() != null ? producto.getTipoproducto().getIdtipopro() : null);
+                    productoDetalleDto.setNombre(producto.getNombre());
+                    productoDetalleDto.setIdanimal(producto.getAnimal() != null ? producto.getAnimal().getIdanimal() : null);
+                    return productoDetalleDto;
                 })
                 .collect(Collectors.toList());
         ventaProductoDto.setProduclist(productos);
 
         return ventaProductoDto;
     }
+
+
 
 }

@@ -9,13 +9,13 @@ public class VentaProductoDto implements DtoEntity{
 
     private Integer codventapro;
     private Integer idcliente;
-    private Integer cantidad;
     private String fecha;
     private String direccion;
-    private Integer idtipopago;
     private double montototal;
+    private Integer idtipopago;
+    private Integer cantidad;
 
-    private List<ProductoDto> produclist;
+    private List<ProductoDetalleDto> produclist;
 
 
 }

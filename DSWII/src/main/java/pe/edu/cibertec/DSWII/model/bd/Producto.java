@@ -37,8 +37,8 @@ public class Producto {
     private Animal animal;
     private Double precioproveedor;
 
-    @OneToMany(mappedBy = "producto",
+    @OneToMany(mappedBy = "productos",
             cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private Set<DetalleTipoPago> ventaproductos = new HashSet<>();
+    private Set<DetalleTipoPago> venta_producto = new HashSet<>();
 }
