@@ -1,5 +1,6 @@
 package pe.edu.cibertec.DSWII.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import pe.edu.cibertec.DSWII.service.IClienteService;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@AllArgsConstructor
 @RestController
 @RequestMapping(path = "api/v1/cliente")
 public class ClienteController {

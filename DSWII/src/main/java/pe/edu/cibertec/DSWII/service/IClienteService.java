@@ -1,5 +1,6 @@
 package pe.edu.cibertec.DSWII.service;
 
+import org.springframework.stereotype.Repository;
 import pe.edu.cibertec.DSWII.model.bd.Cliente;
 
 import java.util.List;

@@ -1,11 +1,14 @@
 package pe.edu.cibertec.DSWII.service;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import pe.edu.cibertec.DSWII.model.bd.Cliente;
 import pe.edu.cibertec.DSWII.repository.ClienteRepository;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
+@AllArgsConstructor
 public class ClienteService implements IClienteService{
     private ClienteRepository clienteRepository;
     @Override

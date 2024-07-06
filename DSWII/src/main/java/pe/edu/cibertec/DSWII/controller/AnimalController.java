@@ -19,11 +19,11 @@ public class AnimalController {
 
     @GetMapping("")
     public ResponseEntity<List<Animal>> listarAnimales(){
-        List<Animal> animalList = new ArrayList<>(animalService.listarAnimales());
-        if(animalList.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(animalList, HttpStatus.OK);
+            List<Animal> animalList = new ArrayList<>(animalService.listarAnimales());
+            if(animalList.isEmpty()){
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(animalList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
