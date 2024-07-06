@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Producto } from './producto';
@@ -17,15 +17,30 @@ export class ProductoService {
   }
 
   getProductoById(id: number): Observable<Producto>{
-    return this.httpClient.get<Producto>(this.urlApi+"/"+id);
+    // Obtener el token del sessionStorage
+    const token = sessionStorage.getItem('token');
+    // Si el token existe, se incluye en los headers de la petición
+    const headers = token ? new HttpHeaders().set('Authorization', `Bearer ${token}`) : undefined;
+
+    return this.httpClient.get<Producto>(this.urlApi+"/"+id, {headers});
   }
 
   createProducto(producto: Producto):Observable<Producto>{
-    return this.httpClient.post<Producto>(this.urlApi, producto);
+    // Obtener el token del sessionStorage
+    const token = sessionStorage.getItem('token');
+    // Si el token existe, se incluye en los headers de la petición
+    const headers = token ? new HttpHeaders().set('Authorization', `Bearer ${token}`) : undefined;
+
+    return this.httpClient.post<Producto>(this.urlApi, producto, {headers});
   }
 
   updateProducto(producto: Producto):Observable<Producto>{
-    return this.httpClient.put<Producto>(this.urlApi+"/"+producto.idproducto, producto)
+    // Obtener el token del sessionStorage
+    const token = sessionStorage.getItem('token');
+    // Si el token existe, se incluye en los headers de la petición
+    const headers = token ? new HttpHeaders().set('Authorization', `Bearer ${token}`) : undefined;
+
+    return this.httpClient.put<Producto>(this.urlApi+"/"+producto.idproducto, producto, {headers})
   }
 
 }

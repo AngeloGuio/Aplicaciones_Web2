@@ -83,8 +83,4 @@ export class CarritoService {
     }
   }
   
-  obtenerTiposPago(): string[] {
-    // Simulamos que los tipos de pago están estáticos
-    return ['Efectivo', 'Tarjeta', 'Transferencia'];
-  }
 }

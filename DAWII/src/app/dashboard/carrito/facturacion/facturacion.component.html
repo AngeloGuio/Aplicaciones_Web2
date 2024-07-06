@@ -28,9 +28,11 @@
           <div class="form-section">
             <label for="tipoPago">Tipo de Pago</label>
             <select id="tipoPago" [(ngModel)]="tipoPagoSeleccionado" name="tipoPago" required>
-              <option *ngFor="let tipoPago of tiposPago" [value]="tipoPago">{{ tipoPago }}</option>
+              <option value="" disabled selected>Seleccione Tipo de Pago</option>
+              <option *ngFor="let tipoPago of tiposPago" [value]="tipoPago.idtipopago">{{ tipoPago.descripcion }}</option>
             </select>
           </div>
+          
           
           <div class="form-section">
             <label for="numeroTarjeta">Número de Tarjeta</label>

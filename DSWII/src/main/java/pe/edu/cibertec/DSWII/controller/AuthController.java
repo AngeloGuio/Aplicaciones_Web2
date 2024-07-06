@@ -65,6 +65,9 @@ public class AuthController {
 
     private String generarToken(Usuario objUsuario){
         String clave = "@Cibertec2023"; // dinamico desde la BD
+        long expirationTime = 1000 * 60 * 60 * 24; // 24 horas en milisegundos
+        Date expiryDate = new Date(System.currentTimeMillis() + expirationTime);
+
         List<GrantedAuthority> grantedAuthorityList =
                 detalleUsuarioService.obtenerListaRolesUsuario(objUsuario.getRoles());
         String token = Jwts
@@ -77,7 +80,7 @@ public class AuthController {
                                 .collect(Collectors.toList())
                 )
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+ 1800000))
+                .setExpiration(expiryDate)
                 .signWith(SignatureAlgorithm.HS512, clave.getBytes())
                 .compact();
         return token;

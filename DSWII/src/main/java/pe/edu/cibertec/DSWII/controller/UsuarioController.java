@@ -22,6 +22,7 @@ public class UsuarioController {
         if (usuarioList.isEmpty()){return  new ResponseEntity<>(HttpStatus.NO_CONTENT);}
         return  new ResponseEntity<>(usuarioList, HttpStatus.OK);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> buscarIdResponseUsuario(@PathVariable Integer id){
         Usuario usuarioid=usuarioService.buscarusuarioXID(id).orElseThrow(
@@ -31,19 +32,15 @@ public class UsuarioController {
 
     }
 
-
-
-    @PostMapping("/registrar")
+    @PostMapping("")
     public ResponseEntity<Usuario> nuevoResponseUsuario(@RequestBody Usuario usuario){
         Usuario nuevousuario=usuarioService.agregarUsuario(usuario);
         return new ResponseEntity<>(nuevousuario,HttpStatus.CREATED);
-
     }
 
-    @PutMapping("actualizar/{id}")
-    public ResponseEntity<Usuario> actualizarResponseUsuario(@RequestBody Integer id ,@RequestBody Usuario usuario){
-        Usuario actualizarusuario=usuarioService.actualizarUsuario(id, usuario);
-        return new ResponseEntity<>(actualizarusuario,HttpStatus.CREATED);
-
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> actualizarResponseUsuario(@PathVariable Integer id, @RequestBody Usuario usuario){
+        Usuario actualizarusuario = usuarioService.actualizarUsuario(id, usuario);
+        return new ResponseEntity<>(actualizarusuario, HttpStatus.OK);
     }
 }

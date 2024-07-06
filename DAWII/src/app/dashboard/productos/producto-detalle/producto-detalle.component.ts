@@ -65,7 +65,7 @@ export class ProductoDetalleComponent {
     if(this.formType === FormType.Crear){
       this.registrarPost(this.postForm.value)
     }else{
-      const postValue = {...this.postForm.value, id: this.postId }
+      const postValue = {...this.postForm.value, idproducto: this.postId }
       this.actualizarPost(postValue)
     }
   }

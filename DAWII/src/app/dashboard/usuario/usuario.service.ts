@@ -45,8 +45,8 @@ export class UsuarioService {
     const token = sessionStorage.getItem('token');
     // Si el token existe, se incluye en los headers de la petición
     const headers = token ? new HttpHeaders().set('Authorization', `Bearer ${token}`) : undefined;
-
-    return this.http.put<Usuario>(this.urlApi+"/"+usuario.idusuario, usuario, { headers })
+    console.log(usuario)
+    return this.http.put<Usuario>(this.urlApi +"/"+ usuario.idusuario , usuario, { headers })
   }
 
 
