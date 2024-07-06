@@ -1,4 +1,4 @@
-package pe.edu.cibertec.DSWII.util;
+package pe.edu.cibertec.DSWII.Util;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

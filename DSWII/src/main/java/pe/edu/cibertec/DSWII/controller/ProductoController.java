@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.cibertec.DSWII.Util.DtoUtil;
 import pe.edu.cibertec.DSWII.exception.ResourceNotFoundException;
 import pe.edu.cibertec.DSWII.model.bd.*;
 import pe.edu.cibertec.DSWII.model.dto.DtoEntity;
@@ -12,7 +13,7 @@ import pe.edu.cibertec.DSWII.model.response.ApiResponse;
 import pe.edu.cibertec.DSWII.repository.*;
 import pe.edu.cibertec.DSWII.service.IProductoService;
 import pe.edu.cibertec.DSWII.service.ProductoService;
-import pe.edu.cibertec.DSWII.util.DtoUtil;
+
 
 import java.util.ArrayList;
 import java.util.List;

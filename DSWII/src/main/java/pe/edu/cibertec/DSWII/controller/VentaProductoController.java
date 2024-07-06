@@ -11,7 +11,7 @@ import pe.edu.cibertec.DSWII.model.dto.DtoEntity;
 import pe.edu.cibertec.DSWII.model.dto.VentaProductoDto;
 import pe.edu.cibertec.DSWII.service.IVentaProductoService;
 import pe.edu.cibertec.DSWII.service.VentaProductoService;
-import pe.edu.cibertec.DSWII.util.DtoUtil;
+
 
 import java.util.ArrayList;
 import java.util.List;
