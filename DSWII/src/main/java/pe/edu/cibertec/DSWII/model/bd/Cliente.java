@@ -25,6 +25,5 @@ public class Cliente {
     private String correo;
     @Column(name = "dni")
     private String dni;
-    @Column(name = "password")
-    private String password;
+
 }
