@@ -44,8 +44,8 @@ public class VentaProducto {
     @Column(name="cantidad")
     private Integer cantidad;
 
-
-
-    @OneToMany(mappedBy = "ventaproducto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DetalleTipoPago> detalleTipoPagoList = new ArrayList<>();
+    @OneToMany(mappedBy = "ventaproductos",
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private Set<DetalleTipoPago> producto = new HashSet<>();
 }

@@ -18,7 +18,8 @@ public class DetalleTipoPago {
 
     @Column(name = "numerocuenta")
     private String numerocuenta;
-    @Column(name="fechavencimiento", nullable = false, updatable = false)
+
+    @Column(name = "fechavencimiento", nullable = false, updatable = false)
     @CreationTimestamp
     private String fechavencimiento;
 
@@ -26,19 +27,17 @@ public class DetalleTipoPago {
     @MapsId("codventapro")
     @JoinColumn(name = "codventapro")
     @JsonBackReference
-    private VentaProducto ventaproducto;
+    private VentaProducto ventaproductos;
 
     @ManyToOne
     @MapsId("idproducto")
     @JoinColumn(name = "idproducto")
     @JsonBackReference
-    private Producto producto;
-
+    private Producto productos;
 
     @ManyToOne
     @MapsId("idtipopago")
     @JoinColumn(name = "idtipopago")
     @JsonBackReference
     private TipoPago tipoPago;
-
 }

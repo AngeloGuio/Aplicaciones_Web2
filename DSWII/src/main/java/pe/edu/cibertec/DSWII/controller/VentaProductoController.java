@@ -11,7 +11,7 @@ import pe.edu.cibertec.DSWII.model.dto.DtoEntity;
 import pe.edu.cibertec.DSWII.model.dto.VentaProductoDto;
 import pe.edu.cibertec.DSWII.service.IVentaProductoService;
 import pe.edu.cibertec.DSWII.service.VentaProductoService;
-import pe.edu.cibertec.DSWII.util.DtoUtil;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +57,18 @@ public class VentaProductoController {
         }
     }
 
+    /*@GetMapping("/dto")
+    public ResponseEntity<List<DtoEntity>> listarVentaProductosDto(){
+        List<DtoEntity> ventaproductDtoList = new ArrayList<>();
+        ventaproductDtoList = ventaProductoService.ventaproductoList()
+                .stream()
+                .map(x -> new DtoUtil().convertirADto(x, new VentaProductoDto()))
+                .collect(Collectors.toList());
+        if(ventaproductDtoList.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(ventaproductDtoList, HttpStatus.OK);
+    }
+*/
 
     @GetMapping("/dto")
     public ResponseEntity<List<VentaProductoDto>> listarVentasDto() {
@@ -69,6 +81,9 @@ public class VentaProductoController {
         }
         return new ResponseEntity<>(ventasDto, HttpStatus.OK);
     }
+
+
+
     @GetMapping("/dto/{id}")
     public ResponseEntity<VentaProductoDto> obtenerVentaProductoDtoPorId(@PathVariable Integer id) {
         Optional<VentaProducto> ventaProductoOpt = ventaProductoService.buscarVentaXID(id);
@@ -81,5 +96,7 @@ public class VentaProductoController {
         VentaProductoDto ventaProductoDto = ventaProductoService.convertirADto(ventaProducto);
         return new ResponseEntity<>(ventaProductoDto, HttpStatus.OK);
     }
+
+
 
 }
