@@ -5,8 +5,7 @@ import { UsuarioService } from './usuario.service';
 import { Usuario } from './usuario';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { EditarUsuarioModalComponent } from './editar-usuario-modal/editar-usuario-modal.component';
-import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
@@ -22,7 +21,7 @@ export class UsuarioComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private usuarioService: UsuarioService, public dialog: MatDialog) {}
+  constructor(private usuarioService: UsuarioService,  private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.usuarioService.obtenerUsuarios().subscribe((usuarios: Usuario[]) => {
@@ -33,24 +32,8 @@ export class UsuarioComponent implements OnInit {
   }
 
   editar(usuario: Usuario) {
-    const dialogRef = this.dialog.open(EditarUsuarioModalComponent, {
-      width: '500px',
-      data: { ...usuario } // Pasa una copia del usuario para editar
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // Actualizar el usuario en la lista local (opcional)
-        const index = this.dataSource.data.findIndex(u => u.idusuario === result.idusuario);
-        if (index !== -1) {
-          this.dataSource.data[index] = result;
-          this.dataSource.data = [...this.dataSource.data]; // Actualiza la referencia para que Angular detecte cambios
-        }
-
-        // Puedes recargar la lista si lo deseas
-        // this.cargarUsuarios();
-      }
-    })};
+    // Lógica para editar usuario
+  }
 
   eliminar(usuario: Usuario) {
     // Lógica para eliminar usuario
@@ -59,4 +42,14 @@ export class UsuarioComponent implements OnInit {
   nuevoUsuario() {
     // Lógica para eliminar usuario
   }
+
+
+  onNavigatePostDetail(usuarioId: string): void {
+    this.router.navigate([usuarioId], {relativeTo: this.route});
+  }
+
+  onNavigateCreatePost(): void{
+    this.router.navigate(['nuevo'], {relativeTo: this.route});
+  }
+
 }

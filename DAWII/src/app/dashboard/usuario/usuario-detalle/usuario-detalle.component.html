@@ -1,0 +1,56 @@
+<div class="module-header">
+    <h2 class="os-title">{{formTitulo}}</h2>
+    <button class="os-button" mat-raised-button color="primary"
+      (click)="guardarPost()">Guardar</button>
+</div>
+<hr />
+<div class="form-container">
+  <form class="form" [formGroup]="postForm">
+
+    <div class="column">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de usuario</mat-label>
+        <input matInput name="nomusuario" formControlName="nomusuario" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput name="email" formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+      <mat-label>Nombres</mat-label>
+      <input matInput name="nombres" formControlName="nombres" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+      <mat-label>Apellidos</mat-label>
+      <input matInput name="apellidos" formControlName="apellidos" />
+      </mat-form-field>
+
+    </div>
+
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>DNI</mat-label>
+        <input matInput name="dni" formControlName="dni" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Teléfono</mat-label>
+        <input matInput name="telefono" formControlName="telefono" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Dirección</mat-label>
+        <input matInput name="direccion" formControlName="direccion" />
+      </mat-form-field>
+
+    </div>
+
+
+
+
+  </form>
+</div>

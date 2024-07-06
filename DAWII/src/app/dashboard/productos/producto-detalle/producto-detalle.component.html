@@ -1,0 +1,74 @@
+<div class="module-header">
+  <h2 class="os-title">{{formTitulo}}</h2>
+  <button class="os-button" mat-raised-button color="primary">Guardar</button>
+</div>
+<hr />
+<div class="form-container">
+  <form class="form" [formGroup]="postForm">
+
+    <div class="column">
+
+      <mat-form-field appearance="outline">
+        <mat-label>idproducto</mat-label>
+        <input matInput name="idproducto" formControlName="idproducto" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>idtipopro</mat-label>
+        <input matInput name="idtipopro" formControlName="idtipopro" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>idproveedor</mat-label>
+        <input matInput name="idproveedor" formControlName="idproveedor" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+      <mat-label>nombre</mat-label>
+      <input matInput name="nombre" formControlName="nombre" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+      <mat-label>cantidad</mat-label>
+      <input matInput name="cantidad" formControlName="cantidad" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+      <mat-label>preciopublico</mat-label>
+      <input matInput name="preciopublico" formControlName="preciopublico" />
+      </mat-form-field>
+    </div>
+
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>stockminimo</mat-label>
+        <input matInput name="stockminimo" formControlName="stockminimo" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>stockmaximo</mat-label>
+        <input matInput name="stockmaximo" formControlName="stockmaximo" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>codestado</mat-label>
+        <input matInput name="codestado" formControlName="codestado" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>idanimal</mat-label>
+        <input matInput name="idanimal" formControlName="idanimal" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>precioproveedor</mat-label>
+        <input matInput name="precioproveedor" formControlName="precioproveedor" />
+      </mat-form-field>
+    </div>
+
+
+
+
+
+  </form>
+</div>

@@ -13,7 +13,7 @@ import { CarritoService } from '../carrito/carrito.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class ProductosComponent implements OnInit {
+export class HomeComponent implements OnInit {
   productos: Producto[] = [];
 
   constructor(

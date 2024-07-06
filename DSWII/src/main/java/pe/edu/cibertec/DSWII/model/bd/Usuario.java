@@ -25,6 +25,12 @@ public class Usuario {
     private String nombres;
     @Column(name = "apellidos")
     private String apellidos;
+    @Column(name = "dni")
+    private String dni;
+    @Column(name = "telefono")
+    private String telefono;
+    @Column(name = "direccion")
+    private String direccion;
     @ManyToMany(
             cascade = CascadeType.MERGE,
             fetch = FetchType.EAGER )

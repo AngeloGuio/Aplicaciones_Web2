@@ -1,6 +1,6 @@
 <div class="table-header">
-  <h2>LISTADO DE USUARIOS</h2>
-  <button mat-raised-button color="primary" (click)="nuevoUsuario()">Nuevo Usuario</button>
+  <h2 class="os-title">LISTADO DE USUARIOS</h2>
+  <button class="ob-button" mat-raised-button color="primary" (click)="onNavigateCreatePost()">Nuevo Usuario</button>
 </div>
 
 <div class="table-container">
@@ -30,11 +30,8 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
       <td mat-cell *matCellDef="let row">
-        <button mat-icon-button matTooltip="Editar" (click)="editar(row)">
+        <button mat-icon-button matTooltip="Editar" (click)="onNavigatePostDetail(row.idusuario)">
           <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="Eliminar" (click)="eliminar(row)">
-          <mat-icon>delete</mat-icon>
         </button>
       </td>
     </ng-container>
@@ -44,5 +41,4 @@
   </table>
 </div>
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-  
-  
+
