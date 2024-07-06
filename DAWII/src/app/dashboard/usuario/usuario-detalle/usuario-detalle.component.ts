@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from '../usuario';
 import { MaterialModule } from '../../../material/material.module';
 import { UsuarioService } from '../usuario.service';
+import Notiflix from 'notiflix';
 
 enum FormType{
   Crear = 0,
@@ -87,8 +88,8 @@ export class UsuarioDetalleComponent {
     if (this.postForm.valid) {
       this.usuarioService.createUsuario(this.postForm.getRawValue()).subscribe(
         data => {
-          console.log('Usuario creado:', data);
           this.route.navigate(['/usuario']);
+          Notiflix.Notify.success(data.message);
         },
         error => {
           console.error('Error al crear usuario:', error);
@@ -102,8 +103,8 @@ export class UsuarioDetalleComponent {
       const usuario: Usuario = { idusuario: this.postId, ...this.postForm.getRawValue() };
       this.usuarioService.updateUsuario(usuario).subscribe(
         data => {
-          console.log('Usuario actualizado:', data);
           this.route.navigate(['/usuario']);
+          Notiflix.Notify.success(data.message);
         },
         error => {
           console.error('Error al actualizar usuario:', error);

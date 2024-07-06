@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoService } from '../producto.service';
 import { Producto } from '../producto';
 import { MaterialModule } from '../../../material/material.module';
+import { ProductoDetalleService } from './producto-detalle.service';
+import Notiflix from 'notiflix';
 
 enum FormType{
   Crear = 0,
@@ -18,15 +20,27 @@ enum FormType{
   styleUrl: './producto-detalle.component.css'
 })
 export class ProductoDetalleComponent {
+  proveedores: any[] = [];
+  tiposProducto: any[] = [];
+  animales: any[] = [];
+  estados: any[] = [];
+
   postId: string | null = ''
   postForm!: FormGroup
   formType!: FormType
   formTitulo!: string
   constructor(private router: ActivatedRoute,
-    private productoService: ProductoService){
+    private productoService: ProductoService,
+    private productoDetalleService: ProductoDetalleService,
+    private route: Router
+  ){
   }
 
   ngOnInit(): void {
+    this.cargarProveedor();
+    this.cargarTipoProducto();
+    this.cargarAnimal();
+    this.cargarEstado();
     this.postId = this.router.snapshot.paramMap.get('id');
     this.postForm = this.formulario()
     if(this.postId !== 'nuevo'){
@@ -53,6 +67,56 @@ export class ProductoDetalleComponent {
       precioproveedor: new FormControl(''),
     })
   }
+
+  cargarProveedor(): void {
+    this.productoDetalleService.getAllProveedor().subscribe(
+      (data) => {
+        console.log(data)
+        this.proveedores = data;
+      },
+      (error) => {
+        console.error('Error al obtener los proveedores:', error);
+      }
+    );
+  }
+
+  cargarTipoProducto(): void {
+    this.productoDetalleService.obtenerTipoProducto().subscribe(
+      (data) => {
+        console.log(data)
+        this.tiposProducto = data;
+      },
+      (error) => {
+        console.error('Error al obtener los proveedores:', error);
+      }
+    );
+  }
+
+  cargarAnimal(): void {
+    this.productoDetalleService.obtenerAnimales().subscribe(
+      (data) => {
+        console.log(data)
+        this.animales = data;
+      },
+      (error) => {
+        console.error('Error al obtener los proveedores:', error);
+      }
+    );
+  }
+
+  cargarEstado(): void {
+    this.productoDetalleService.obtenerEstados().subscribe(
+      (data) => {
+        console.log(data)
+        this.estados = data;
+      },
+      (error) => {
+        console.error('Error al obtener los proveedores:', error);
+      }
+    );
+  }
+
+
   cargarPost(postid:number): void{
     this.productoService.getProductoById(postid)
     .subscribe(
@@ -73,7 +137,8 @@ export class ProductoDetalleComponent {
     this.productoService.createProducto(producto)
     .subscribe(
       (data) => {
-        console.log(data);
+        this.route.navigate(['/producto']);
+        Notiflix.Notify.success(data.message);
       }
     )
   }
@@ -81,7 +146,8 @@ export class ProductoDetalleComponent {
     this.productoService.updateProducto(producto)
     .subscribe(
       (data) => {
-        console.log(data);
+        this.route.navigate(['/producto']);
+        Notiflix.Notify.success(data.message);
       }
     )
   }

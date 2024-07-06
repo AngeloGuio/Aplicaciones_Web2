@@ -35,8 +35,6 @@ public class ProductoService implements IProductoService{
         return null;
     }
 
-
-
     public boolean registraryActualizarProducto(ProductoDto productoDto){
         try {
             Producto nuevoproducto = new Producto();

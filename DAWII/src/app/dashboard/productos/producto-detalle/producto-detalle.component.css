@@ -1,22 +1,32 @@
-.mat-mdc-form-field {
-  display: block;
-}
-
-.form {
+.producto-detalle-container {
   display: flex;
-  width: 60%;
-}
-
-.column {
-  flex: 50%;
+  justify-content: center;
   padding: 20px;
 }
 
-.os-title {
-  display: inline-block;
+.producto-detalle-card {
+  width: 100%;
+  max-width: 800px;
 }
 
-.os-button {
-  float: right;
-  margin: 15px 0 25px;
+.producto-detalle-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-half-width {
+  flex: 1;
+  min-width: calc(50% - 20px);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
 }

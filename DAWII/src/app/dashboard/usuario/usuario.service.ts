@@ -31,7 +31,7 @@ export class UsuarioService {
     return this.http.get<Usuario>(this.urlApi+"/"+id, {headers});
   }
 
-  createUsuario(usuario: Usuario):Observable<Usuario>{
+  createUsuario(usuario: Usuario):Observable<any>{
     // Obtener el token del sessionStorage
     const token = sessionStorage.getItem('token');
     // Si el token existe, se incluye en los headers de la petición
@@ -40,7 +40,7 @@ export class UsuarioService {
     return this.http.post<Usuario>(this.urlApi, usuario, { headers });
   }
 
-  updateUsuario(usuario: Usuario):Observable<Usuario>{
+  updateUsuario(usuario: Usuario):Observable<any>{
     // Obtener el token del sessionStorage
     const token = sessionStorage.getItem('token');
     // Si el token existe, se incluye en los headers de la petición

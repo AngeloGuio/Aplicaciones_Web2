@@ -16,7 +16,7 @@ export class ProductoService {
     return this.httpClient.get<Producto[]>(this.urlApi);
   }
 
-  getProductoById(id: number): Observable<Producto>{
+  getProductoById(id: number): Observable<any>{
     // Obtener el token del sessionStorage
     const token = sessionStorage.getItem('token');
     // Si el token existe, se incluye en los headers de la petición
@@ -25,22 +25,22 @@ export class ProductoService {
     return this.httpClient.get<Producto>(this.urlApi+"/"+id, {headers});
   }
 
-  createProducto(producto: Producto):Observable<Producto>{
+  createProducto(producto: Producto):Observable<any>{
     // Obtener el token del sessionStorage
     const token = sessionStorage.getItem('token');
     // Si el token existe, se incluye en los headers de la petición
     const headers = token ? new HttpHeaders().set('Authorization', `Bearer ${token}`) : undefined;
 
-    return this.httpClient.post<Producto>(this.urlApi, producto, {headers});
+    return this.httpClient.post<Producto>(this.urlApi+"/registrar", producto, {headers});
   }
 
-  updateProducto(producto: Producto):Observable<Producto>{
+  updateProducto(producto: Producto):Observable<any>{
     // Obtener el token del sessionStorage
     const token = sessionStorage.getItem('token');
     // Si el token existe, se incluye en los headers de la petición
     const headers = token ? new HttpHeaders().set('Authorization', `Bearer ${token}`) : undefined;
 
-    return this.httpClient.put<Producto>(this.urlApi+"/"+producto.idproducto, producto, {headers})
+    return this.httpClient.put<Producto>(this.urlApi+"/actualizar/"+producto.idproducto, producto, {headers})
   }
 
 }

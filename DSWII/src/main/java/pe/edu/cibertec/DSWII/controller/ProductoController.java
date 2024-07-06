@@ -8,6 +8,7 @@ import pe.edu.cibertec.DSWII.exception.ResourceNotFoundException;
 import pe.edu.cibertec.DSWII.model.bd.*;
 import pe.edu.cibertec.DSWII.model.dto.DtoEntity;
 import pe.edu.cibertec.DSWII.model.dto.ProductoDto;
+import pe.edu.cibertec.DSWII.model.response.ApiResponse;
 import pe.edu.cibertec.DSWII.repository.*;
 import pe.edu.cibertec.DSWII.service.IProductoService;
 import pe.edu.cibertec.DSWII.service.ProductoService;
@@ -63,26 +64,29 @@ public class ProductoController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<String> registrarProducto(@RequestBody ProductoDto productoDto) {
+    public ResponseEntity<ApiResponse> registrarProducto(@RequestBody ProductoDto productoDto) {
         boolean resultado = productoService.registraryActualizarProducto(productoDto);
         if (resultado) {
-            return ResponseEntity.ok("Producto registrado exitosamente");
+            return ResponseEntity.ok(new ApiResponse(true, "Producto registrado exitosamente"));
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar el producto");
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse(false, "Error al registrar el producto"));
         }
     }
 
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<String> actualizarProducto(@PathVariable Integer id, @RequestBody ProductoDto productoDto) {
-        productoDto.setIdproducto(id); // Asegúrate de que el ID esté establecido
+    public ResponseEntity<ApiResponse> actualizarProducto(@PathVariable Integer id, @RequestBody ProductoDto productoDto) {
+        productoDto.setIdproducto(id);
         boolean resultado = productoService.registraryActualizarProducto(productoDto);
         if (resultado) {
-            return ResponseEntity.ok("Producto actualizado exitosamente");
+            return ResponseEntity.ok(new ApiResponse(true, "Producto actualizado exitosamente"));
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el producto");
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse(false, "Error al actualizar el producto"));
         }
     }
-
 
     @GetMapping("/dto")
     public ResponseEntity<List<ProductoDto>> listarProductoDto() {

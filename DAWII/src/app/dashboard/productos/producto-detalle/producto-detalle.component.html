@@ -1,75 +1,94 @@
-<div class="module-header">
-  <h2 class="os-title">{{formTitulo}}</h2>
-  <button class="os-button" mat-raised-button color="primary"
-    (click)="guardarPost()">Guardar</button>
-</div>
-<hr />
-<div class="form-container">
-  <form class="form" [formGroup]="postForm">
+<div class="producto-detalle-container">
+  <mat-card class="producto-detalle-card">
+    <mat-card-title>{{ formTitulo }}</mat-card-title>
+    <br>
+    <mat-card-content>
+      <form [formGroup]="postForm" class="producto-detalle-form">
+        <!-- Formulario con dos columnas -->
+        <div class="form-row">
+          <mat-form-field class="form-half-width">
+            <mat-label>Nombre del Producto</mat-label>
+            <input matInput formControlName="nombre" placeholder="Ingrese el nombre del producto">
+          </mat-form-field>
 
-    <div class="column">
+          <mat-form-field class="form-half-width">
+            <mat-label>Precio Público</mat-label>
+            <input matInput type="number" formControlName="preciopublico" placeholder="Ingrese el precio público">
+          </mat-form-field>
+        </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>idproducto</mat-label>
-        <input matInput name="idproducto" formControlName="idproducto" />
-      </mat-form-field>
+        <div class="form-row">
+          <mat-form-field class="form-half-width">
+            <mat-label>Cantidad</mat-label>
+            <input matInput type="number" formControlName="cantidad" placeholder="Ingrese cantidad del producto">
+          </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>idtipopro</mat-label>
-        <input matInput name="idtipopro" formControlName="idtipopro" />
-      </mat-form-field>
+          <mat-form-field class="form-half-width">
+            <mat-label>Precio Proveedor</mat-label>
+            <input matInput type="number" formControlName="precioproveedor" placeholder="Ingrese precio proveedor del prodcuto">
+          </mat-form-field>
+        </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>idproveedor</mat-label>
-        <input matInput name="idproveedor" formControlName="idproveedor" />
-      </mat-form-field>
+        <div class="form-row">
+          <mat-form-field class="form-half-width">
+            <mat-label>Stock minimo</mat-label>
+            <input matInput type="number" formControlName="stockminimo" placeholder="Ingrese stock minimo del producto">
+          </mat-form-field>
 
-      <mat-form-field appearance="outline">
-      <mat-label>nombre</mat-label>
-      <input matInput name="nombre" formControlName="nombre" />
-      </mat-form-field>
+          <mat-form-field class="form-half-width">
+            <mat-label>Stock maximo</mat-label>
+            <input matInput type="number" formControlName="stockmaximo" placeholder="Ingrese stock maximo del prodcuto">
+          </mat-form-field>
+        </div>
 
-      <mat-form-field appearance="outline">
-      <mat-label>cantidad</mat-label>
-      <input matInput name="cantidad" formControlName="cantidad" />
-      </mat-form-field>
+        <div class="form-row">
+          <mat-form-field class="form-half-width">
+            <mat-label>Tipo de Producto</mat-label>
+            <mat-select formControlName="idtipopro">
+              <mat-option *ngFor="let tipo of tiposProducto" [value]="tipo.idtipopro">
+                {{ tipo.desctipopro }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-      <mat-form-field appearance="outline">
-      <mat-label>preciopublico</mat-label>
-      <input matInput name="preciopublico" formControlName="preciopublico" />
-      </mat-form-field>
-    </div>
+          <mat-form-field class="form-half-width">
+            <mat-label>Proveedor</mat-label>
+            <mat-select formControlName="idproveedor">
+              <mat-option *ngFor="let proveedor of proveedores" [value]="proveedor.idproveedor">
+                {{ proveedor.empresa }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+        </div>
 
-    <div class="column">
-      <mat-form-field appearance="outline">
-        <mat-label>stockminimo</mat-label>
-        <input matInput name="stockminimo" formControlName="stockminimo" />
-      </mat-form-field>
+        <div class="form-row">
+          <mat-form-field class="form-half-width">
+            <mat-label>Animal</mat-label>
+            <mat-select formControlName="idanimal">
+              <mat-option *ngFor="let animal of animales" [value]="animal.idanimal">
+                {{ animal.descanimal }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>stockmaximo</mat-label>
-        <input matInput name="stockmaximo" formControlName="stockmaximo" />
-      </mat-form-field>
+          <mat-form-field class="form-half-width">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="codestado">
+              <mat-option *ngFor="let estado of estados" [value]="estado.codestado">
+                {{ estado.nombreestado }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+        </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>codestado</mat-label>
-        <input matInput name="codestado" formControlName="codestado" />
-      </mat-form-field>
+        <!-- Más campos del formulario -->
 
-      <mat-form-field appearance="outline">
-        <mat-label>idanimal</mat-label>
-        <input matInput name="idanimal" formControlName="idanimal" />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>precioproveedor</mat-label>
-        <input matInput name="precioproveedor" formControlName="precioproveedor" />
-      </mat-form-field>
-    </div>
-
-
-
-
-
-  </form>
+        <div class="form-actions">
+          <button mat-raised-button color="primary" (click)="guardarPost()">Guardar</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>

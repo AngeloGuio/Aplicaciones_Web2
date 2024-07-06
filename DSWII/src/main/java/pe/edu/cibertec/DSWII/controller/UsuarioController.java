@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.cibertec.DSWII.exception.ResourceNotFoundException;
 import pe.edu.cibertec.DSWII.model.bd.Usuario;
+import pe.edu.cibertec.DSWII.model.response.ApiResponse;
 import pe.edu.cibertec.DSWII.service.UsuarioService;
 
 import java.util.ArrayList;
@@ -33,14 +34,27 @@ public class UsuarioController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Usuario> nuevoResponseUsuario(@RequestBody Usuario usuario){
-        Usuario nuevousuario=usuarioService.agregarUsuario(usuario);
-        return new ResponseEntity<>(nuevousuario,HttpStatus.CREATED);
+    public ResponseEntity<ApiResponse> nuevoResponseUsuario(@RequestBody Usuario usuario){
+        try {
+            Usuario nuevousuario = usuarioService.agregarUsuario(usuario);
+            return ResponseEntity.ok(new ApiResponse(true, "Usuario creado exitosamente"));
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse(false, "Error al crear el usuario: " + e.getMessage()));
+        }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> actualizarResponseUsuario(@PathVariable Integer id, @RequestBody Usuario usuario){
-        Usuario actualizarusuario = usuarioService.actualizarUsuario(id, usuario);
-        return new ResponseEntity<>(actualizarusuario, HttpStatus.OK);
+    public ResponseEntity<ApiResponse> actualizarResponseUsuario(@PathVariable Integer id, @RequestBody Usuario usuario){
+        try {
+            Usuario actualizarusuario = usuarioService.actualizarUsuario(id, usuario);
+            return ResponseEntity.ok(new ApiResponse(true, "Usuario actualizado exitosamente"));
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse(false, "Error al actualizar el usuario: " + e.getMessage()));
+        }
     }
+
 }
