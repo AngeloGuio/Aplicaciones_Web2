@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -21,7 +23,9 @@ public class VentaProducto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codventapro;
 
-
+    @ManyToOne
+    @JoinColumn(name = "idcliente")
+    private Cliente cliente;
 
     @Column(name="fecha", nullable = false, updatable = false)
     @CreationTimestamp
@@ -40,8 +44,8 @@ public class VentaProducto {
     @Column(name="cantidad")
     private Integer cantidad;
 
-    @OneToMany(mappedBy = "ventaproducto",
-            cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private Set<DetalleTipoPago> products = new HashSet<>();
+
+
+    @OneToMany(mappedBy = "ventaproducto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetalleTipoPago> detalleTipoPagoList = new ArrayList<>();
 }

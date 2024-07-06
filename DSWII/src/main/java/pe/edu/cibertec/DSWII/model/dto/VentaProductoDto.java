@@ -7,8 +7,8 @@ import java.util.List;
 @Data
 public class VentaProductoDto implements DtoEntity{
 
-    private Integer idtrabajador;
-    private Integer idusuario;
+    private Integer codventapro;
+    private Integer idcliente;
     private Integer cantidad;
     private String fecha;
     private String direccion;
