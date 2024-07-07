@@ -17,6 +17,7 @@ import { CarritoService } from './carrito/carrito.service';
 })
 
 export class DashboardComponent {
+  nombreUsuario: string | null = null;
   cantidadProductosEnCarrito: number = 0;
   mostrarIconoCarrito: boolean = true;
 
@@ -27,6 +28,7 @@ export class DashboardComponent {
     public dialog: MatDialog,
     private carritoService: CarritoService
   ){
+    this.cargarNombreUsuario();
     this.carritoService.obtenerCantidadProductos().subscribe(cantidad => {
       this.cantidadProductosEnCarrito = cantidad;
     });
@@ -50,6 +52,10 @@ export class DashboardComponent {
     if (this.route.snapshot.firstChild && this.route.snapshot.firstChild.data['protegida']) {
       this.router.navigate(['/']); // Redirige al usuario a la página de inicio
     }
+  }
+
+  cargarNombreUsuario(): void {
+    this.nombreUsuario = sessionStorage.getItem('usuario');
   }
 
   irPortada():void{

@@ -35,10 +35,13 @@
             <button mat-menu-item (click)="irVenta()">Reporte de Ventas</button>
           </mat-menu>
         </div>
-      
-
-
-    <span class="example-spacer"></span>
+        
+        
+        
+        <span class="example-spacer"></span>
+        <div *ngIf="estaLogeado()">
+          <span>Bienvenido, {{ nombreUsuario }}</span>
+        </div>
     
     <button *ngIf="mostrarIconoCarrito" mat-icon-button [matBadge]="cantidadProductosEnCarrito" matBadgeColor="accent" matBadgePosition="below after" (click)="abrirCarrito()">
       <mat-icon>shopping_cart</mat-icon>

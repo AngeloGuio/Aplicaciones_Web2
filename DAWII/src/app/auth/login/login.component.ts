@@ -26,9 +26,11 @@ export class LoginComponent {
   submit(usuario: HTMLInputElement, password: HTMLInputElement): void {
     this.authService.login(usuario.value, password.value).subscribe({
       next: (response) => {
+        console.log(response)
         // Guarda el token y otros datos necesarios en sessionStorage o localStorage
         sessionStorage.setItem('token', response.token);
         sessionStorage.setItem('isLogged', 'true');
+        sessionStorage.setItem('usuario', response.nomusuario);
         // Redirige al usuario a la página principal o dashboard
         this.router.navigateByUrl('/');
       },
